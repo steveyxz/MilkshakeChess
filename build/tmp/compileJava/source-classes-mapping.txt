@@ -6,8 +6,8 @@ com/milkshakeChess/interfaces/GlobalValues.java
  com.milkshakeChess.interfaces.GlobalValues
 com/milkshakeChess/enums/gameChoice/Result.java
  com.milkshakeChess.enums.gameChoice.Result
-com/milkshakeChess/models/screenObjects/ScreenObject.java
- com.milkshakeChess.models.screenObjects.ScreenObject
+com/milkshakeChess/pieces/King.java
+ com.milkshakeChess.pieces.King
 com/milkshakeChess/models/interfaces/IHasClickSpots.java
  com.milkshakeChess.models.interfaces.IHasClickSpots
 com/milkshakeChess/models/ObjectContainer.java
@@ -20,10 +20,10 @@ com/milkshakeChess/util/Move.java
  com.milkshakeChess.util.Move
 com/milkshakeChess/enums/gameChoice/WindowState.java
  com.milkshakeChess.enums.gameChoice.WindowState
-com/milkshakeChess/models/screenObjects/StartScreenObject.java
- com.milkshakeChess.models.screenObjects.StartScreenObject
-com/milkshakeChess/models/screenObjects/CheckmateScreenObject.java
- com.milkshakeChess.models.screenObjects.CheckmateScreenObject
+com/milkshakeChess/pieces/Queen.java
+ com.milkshakeChess.pieces.Queen
+com/milkshakeChess/pieces/Pawn.java
+ com.milkshakeChess.pieces.Pawn
 com/milkshakeChess/interfaces/Constants.java
  com.milkshakeChess.interfaces.Constants
 com/milkshakeChess/models/interfaces/IObjectContainer.java
@@ -34,40 +34,42 @@ com/milkshakeChess/enums/id/SideID.java
  com.milkshakeChess.enums.id.SideID
 com/milkshakeChess/settings/GameChoiceStorage.java
  com.milkshakeChess.settings.GameChoiceStorage
-com/milkshakeChess/processors/MoveProcessor.java
- com.milkshakeChess.processors.MoveProcessor
+com/milkshakeChess/pieces/Rook.java
+ com.milkshakeChess.pieces.Rook
 com/milkshakeChess/FontManager.java
  com.milkshakeChess.FontManager
-com/milkshakeChess/screens/MainOverlay.java
- com.milkshakeChess.screens.MainOverlay
-com/milkshakeChess/pieces/Knight.java
- com.milkshakeChess.pieces.Knight
-com/milkshakeChess/screens/StartScreen.java
- com.milkshakeChess.screens.StartScreen
 com/milkshakeChess/pieces/Bishop.java
  com.milkshakeChess.pieces.Bishop
+com/milkshakeChess/pieces/Knight.java
+ com.milkshakeChess.pieces.Knight
+com/milkshakeChess/objects/startScreen/FakePawn.java
+ com.milkshakeChess.objects.startScreen.FakePawn
+com/milkshakeChess/models/screenObjects/StartScreenObject.java
+ com.milkshakeChess.models.screenObjects.StartScreenObject
+com/milkshakeChess/models/screenObjects/ScreenObject.java
+ com.milkshakeChess.models.screenObjects.ScreenObject
+com/milkshakeChess/models/screenObjects/MainOverlayObject.java
+ com.milkshakeChess.models.screenObjects.MainOverlayObject
+com/milkshakeChess/models/screenObjects/CheckmateScreenObject.java
+ com.milkshakeChess.models.screenObjects.CheckmateScreenObject
+com/milkshakeChess/processors/MoveProcessor.java
+ com.milkshakeChess.processors.MoveProcessor
 com/milkshakeChess/Game.java
  com.milkshakeChess.Game
-com/milkshakeChess/pieces/Queen.java
- com.milkshakeChess.pieces.Queen
+com/milkshakeChess/objects/startScreen/PageSwitcher.java
+ com.milkshakeChess.objects.startScreen.PageSwitcher
+com/milkshakeChess/screens/MainOverlay.java
+ com.milkshakeChess.screens.MainOverlay
 com/milkshakeChess/processors/GraphicsProcessor.java
  com.milkshakeChess.processors.GraphicsProcessor
 com/milkshakeChess/models/Screen.java
  com.milkshakeChess.models.Screen
-com/milkshakeChess/objects/startScreen/FakePawn.java
- com.milkshakeChess.objects.startScreen.FakePawn
-com/milkshakeChess/pieces/Pawn.java
- com.milkshakeChess.pieces.Pawn
 com/milkshakeChess/Window.java
  com.milkshakeChess.Window
  com.milkshakeChess.Window$1
 com/milkshakeChess/objects/startScreen/Button.java
  com.milkshakeChess.objects.startScreen.Button
-com/milkshakeChess/pieces/King.java
- com.milkshakeChess.pieces.King
-com/milkshakeChess/models/screenObjects/MainOverlayObject.java
- com.milkshakeChess.models.screenObjects.MainOverlayObject
+com/milkshakeChess/screens/StartScreen.java
+ com.milkshakeChess.screens.StartScreen
 com/milkshakeChess/screens/CheckmateScreen.java
  com.milkshakeChess.screens.CheckmateScreen
-com/milkshakeChess/pieces/Rook.java
- com.milkshakeChess.pieces.Rook
