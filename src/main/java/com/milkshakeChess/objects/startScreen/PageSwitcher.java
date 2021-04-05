@@ -8,11 +8,9 @@ import java.util.function.Consumer;
 
 public class PageSwitcher extends ScreenObject {
 
-    private int direction;
+    public int direction;
     private Screen mainClass;
     private Consumer<Integer> action;
-    private Polygon rightPagePolygon;
-    private Polygon leftPagePolygon;
 
     //direction is left (previous page) at 0 and right (next page) at 1
     public PageSwitcher(int x, int y, int rotation, int width, int height, int direction, Screen mainClass, Consumer<Integer> action) {
@@ -28,14 +26,22 @@ public class PageSwitcher extends ScreenObject {
         this.direction = direction;
         this.mainClass = mainClass;
         this.action = action;
-        initAction();
+        initAction(true);
     }
 
-    private void initAction() {
-        if (direction == 0) {
-            mainClass.weirdShapeClickySpots.put(leftPagePolygon, action);
+    public void initAction(boolean enable) {
+        if (enable) {
+            if (direction == 0) {
+                mainClass.weirdShapeClickySpots.put(new Polygon(new int[] {x, x + width, x + width}, new int[] {y + height / 2, y, y + height}, 3), action);
+            } else {
+                mainClass.weirdShapeClickySpots.put(new Polygon(new int[] {x, x, x + width}, new int[] {y, y + height, y + height / 2}, 3), action);
+            }
         } else {
-            mainClass.weirdShapeClickySpots.put(rightPagePolygon, action);
+            if (direction == 0) {
+                mainClass.weirdShapeClickySpots.remove(new Polygon(new int[] {x, x + width, x + width}, new int[] {y + height / 2, y, y + height}, 3));
+            } else {
+                mainClass.weirdShapeClickySpots.remove(new Polygon(new int[] {x, x, x + width}, new int[] {y, y + height, y + height / 2}, 3));
+            }
         }
     }
 
@@ -51,12 +57,10 @@ public class PageSwitcher extends ScreenObject {
     @Override
     public void render(Graphics g) {
         g.setColor(Color.DARK_GRAY);
-        leftPagePolygon = new Polygon(new int[] {x, x + width, x + width}, new int[] {y + height / 2, y, y + height}, 3);
-        rightPagePolygon = new Polygon(new int[] {x, x, x + width}, new int[] {y, y + height, y + height / 2}, 3);
         if (direction == 0) {
-            g.fillPolygon(leftPagePolygon);
+            g.fillPolygon(new Polygon(new int[] {x, x + width, x + width}, new int[] {y + height / 2, y, y + height}, 3));
         } else {
-            g.fillPolygon(rightPagePolygon);
+            g.fillPolygon(new Polygon(new int[] {x, x, x + width}, new int[] {y, y + height, y + height / 2}, 3));
         }
     }
 }
