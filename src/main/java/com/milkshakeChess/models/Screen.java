@@ -16,7 +16,12 @@ import java.util.function.Consumer;
 public abstract class Screen extends MouseAdapter implements IObjectContainer<ScreenObject>, IHasClickSpots {
 
     public ArrayList<ScreenObject> objects = new ArrayList<>();
+    /**
+     * clickySpots contains the current clickable spots in the format of
+     * [startX, startY, endX, endY, page (all referring to the specified spot)] : Consumer<Integer> action
+     */
     public HashMap<LinkedList<Integer>, Consumer<Integer>> clickySpots = new HashMap<>();
+    public HashMap<Polygon, Consumer<Integer>> weirdShapeClickySpots = new HashMap<>();
     protected Game game;
 
 
@@ -58,6 +63,13 @@ public abstract class Screen extends MouseAdapter implements IObjectContainer<Sc
             LinkedList<Integer> i = (LinkedList<Integer>) clickySpots.keySet().toArray()[b];
             if (squareContainsPoint(new Rectangle(i.get(0), i.get(1), i.get(2) - i.get(0), i.get(3) - i.get(1)), new Point(mouseX, mouseY))) {
                 clickySpots.get(i).accept(1);
+                break;
+            }
+        }
+        for (int i = 0; i < weirdShapeClickySpots.size(); i++) {
+            Polygon polygon = (Polygon) weirdShapeClickySpots.keySet().toArray()[i];
+            if (polygon.contains(new Point(mouseX, mouseY))) {
+                weirdShapeClickySpots.get(i).accept(1);
                 break;
             }
         }

@@ -48,6 +48,7 @@ public class Button extends ScreenObject {
         positionalValues.add(y);
         positionalValues.add(x + width);
         positionalValues.add(y + height);
+        positionalValues.add(pageOn);
         if (mainClass instanceof StartScreen) {
             ((StartScreen) mainClass).clickySpots.put(positionalValues, action);
         } else if (mainClass instanceof MainOverlay) {
