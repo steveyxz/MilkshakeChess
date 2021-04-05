@@ -10,9 +10,13 @@ import com.milkshakeChess.models.Screen;
 import com.milkshakeChess.models.screenObjects.ScreenObject;
 import com.milkshakeChess.objects.startScreen.Button;
 import com.milkshakeChess.objects.startScreen.FakePawn;
+import com.milkshakeChess.objects.startScreen.PageSwitcher;
 import com.milkshakeChess.settings.GameChoiceStorage;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+import java.util.function.Consumer;
 
 import static com.milkshakeChess.Game.*;
 
@@ -37,6 +41,32 @@ public class StartScreen extends Screen {
         super(game);
         createObjects();
         getSizes();
+    }
+
+    @SuppressWarnings("all")
+    @Override
+    public void mousePressed(MouseEvent e) {
+        int mouseX = e.getX();
+        int mouseY = e.getY();
+        for (int b = 0; b < clickySpots.size(); b++) {
+            LinkedList<Integer> i = (LinkedList<Integer>) clickySpots.keySet().toArray()[b];
+            if (i.get(4) == page) {
+                if (squareContainsPoint(new Rectangle(i.get(0), i.get(1), i.get(2) - i.get(0), i.get(3) - i.get(1)), new Point(mouseX, mouseY))) {
+                    clickySpots.get(i).accept(1);
+                    break;
+                }
+            }
+        }
+        for (int i = 0; i < weirdShapeClickySpots.size(); i++) {
+            if (weirdShapeClickySpots.size() < 1) {
+                break;
+            }
+            Polygon polygon = ((Polygon) weirdShapeClickySpots.keySet().toArray()[i]);
+            if (polygon.contains(new Point(mouseX, mouseY))) {
+                weirdShapeClickySpots.get((Polygon) weirdShapeClickySpots.keySet().toArray()[i]).accept(1);
+                break;
+            }
+        }
     }
 
     private void getSizes() {
@@ -177,6 +207,28 @@ public class StartScreen extends Screen {
                     GameChoiceStorage.difficultyAsRating = 800;
                     createObjects();
                 }, this));
+                addItem(new Button(100, 150, 0, 200, 80, "Regular Player (1000)", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.difficultyAsRating = 1000;
+                    createObjects();
+                }, this, Color.white, Color.BLACK, 50, 2));
+                addItem(new PageSwitcher(600, 200, 0, 20, 50, 1, this, integer -> {
+                    if (page >= noPages) {
+                        return;
+                    }
+                    page++;
+                }));
+                addItem(new PageSwitcher(30, 200, 0, 20, 50, 0, this, integer -> {
+                    if (page <= 1) {
+                        return;
+                    }
+                    page--;
+                }));
             }
             case 3 -> {
                 noPages = 1;
@@ -224,6 +276,7 @@ public class StartScreen extends Screen {
             anchorX = (int) (Game.WIDTH / 2 - totalWidth / 1.8F);
         }
         clickySpots.clear();
+        weirdShapeClickySpots.clear();
         for (int i = 0; i < objects.size(); i++) {
             ScreenObject obj = objects.get(i);
             obj.setWidth((int) (obj.getStartingWidth() * ratio));
@@ -235,6 +288,9 @@ public class StartScreen extends Screen {
             }
             if (obj instanceof Button) {
                 ((Button) obj).setObjectToAction();
+            }
+            if (obj instanceof PageSwitcher) {
+                ((PageSwitcher) obj).initAction(true);
             }
         }
         StartScreen.ratio = ratio;
@@ -251,6 +307,22 @@ public class StartScreen extends Screen {
                 g.drawString("Milkshake", Game.WIDTH / 2 - g.getFontMetrics(FontManager.avengerTitleFont).stringWidth("Milkshake") / 2 - 20, (int) (fakePawnY + 30 + Game.WIDTH / Constants.GAME_START_WIDTH));
                 g.drawString("Chess", Game.WIDTH / 2 - g.getFontMetrics(FontManager.avengerTitleFont).stringWidth("Chess") / 2 + 20, (int) ((int) (fakePawnY + 60 + Game.WIDTH / Constants.GAME_START_WIDTH * 2)));
                 for (int i = 0; i < objects.size(); i++) {
+                    if (objects.get(i) instanceof Button) {
+                        if (objects.get(i).pageOn != page) {
+                            continue;
+                        }
+                    }
+                    if (objects.get(i) instanceof PageSwitcher) {
+                        if (((PageSwitcher) objects.get(i)).direction == 0) {
+                            if (page <= 1) {
+                                continue;
+                            }
+                        } else {
+                            if (page >= noPages) {
+                                continue;
+                            }
+                        }
+                    }
                     objects.get(i).render(g);
                 }
             }
