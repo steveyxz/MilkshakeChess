@@ -13,13 +13,14 @@ import java.util.Objects;
 public class FontManager {
 
     public static Font avengerTitleFont;
+    public static Font debrosee;
+    public static Font kgTenK1;
+    public static Font kgTenK2;
 
     public FontManager() {
         try {
             initFonts();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (FontFormatException e) {
+        } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
     }
@@ -30,6 +31,24 @@ public class FontManager {
 
         avengerTitleFont = Font.createFont(Font.TRUETYPE_FONT, fontInput);
         avengerTitleFont = avengerTitleFont.deriveFont(30F);
+
+        fontSrc = Objects.requireNonNull(FontManager.class.getResourceAsStream("/fonts/Debrosee.ttf")).readAllBytes();
+        fontInput = new ByteArrayInputStream(fontSrc);
+
+        debrosee = Font.createFont(Font.TRUETYPE_FONT, fontInput);
+        debrosee = debrosee.deriveFont(30F);
+
+        fontSrc = Objects.requireNonNull(FontManager.class.getResourceAsStream("/fonts/KgTenThousand1.ttf")).readAllBytes();
+        fontInput = new ByteArrayInputStream(fontSrc);
+
+        kgTenK1 = Font.createFont(Font.TRUETYPE_FONT, fontInput);
+        kgTenK1 = debrosee.deriveFont(30F);
+
+        fontSrc = Objects.requireNonNull(FontManager.class.getResourceAsStream("/fonts/KgTenThousand2.ttf")).readAllBytes();
+        fontInput = new ByteArrayInputStream(fontSrc);
+
+        kgTenK2 = Font.createFont(Font.TRUETYPE_FONT, fontInput);
+        kgTenK2 = debrosee.deriveFont(30F);
     }
 
     public static Font getResizedFont(Font font, float size) {
