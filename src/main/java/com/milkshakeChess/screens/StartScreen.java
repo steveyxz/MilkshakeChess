@@ -14,6 +14,8 @@ import com.milkshakeChess.settings.GameChoiceStorage;
 
 import java.awt.*;
 
+import static com.milkshakeChess.Game.*;
+
 public class StartScreen extends Screen {
 
     public int stage = 0;
@@ -25,6 +27,9 @@ public class StartScreen extends Screen {
     public static int startWidth = 0;
     public static int startHeight = 0;
     public static int fakePawnY = 0;
+
+    public int page = 1;
+    public int noPages = 1;
 
     private int tickTimer = 0;
 
@@ -64,6 +69,8 @@ public class StartScreen extends Screen {
         addItem(new FakePawn(530, 30, 10, SideID.White));
         switch (stage) {
             case 0 -> {
+                page = 1;
+                noPages = 1;
                 addItem(new Button(190, 150, 0, 250, 80, "Console", integer -> {
                     System.out.println("CONSOLE OPENS");
                 }, this));
@@ -78,6 +85,8 @@ public class StartScreen extends Screen {
                 }, this));
             }
             case 1 -> {
+                page = 1;
+                noPages = 1;
                 addItem(new Button(50, 150, 0, 200, 80, "Play Black", integer -> {
                     stage++;
                     try {
@@ -110,19 +119,22 @@ public class StartScreen extends Screen {
                 }, this));
             }
             case 2 -> {
+                page = 1;
+                noPages = 2;
                 if (GameChoiceStorage.gameType == GameType.PlayerBoth) {
                     clickySpots.clear();
                     clearItems();
                     Game.currentState = WindowState.Game;
+                    return;
                 }
-                addItem(new Button(50, 150, 0, 200, 80, "Completely Stupid (<100)", integer -> {
+                addItem(new Button(100, 150, 0, 200, 80, "Completely Stupid (<100)", integer -> {
                     stage++;
                     try {
                         Thread.sleep(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.gameType = GameType.PlayerBlack;
+                    GameChoiceStorage.difficultyAsRating = 50;
                     createObjects();
                 }, this));
                 addItem(new Button(350, 150, 0, 200, 80, "Trash (200)", integer -> {
@@ -132,20 +144,56 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.gameType = GameType.PlayerWhite;
+                    GameChoiceStorage.difficultyAsRating = 200;
                     createObjects();
                 }, this));
-                addItem(new Button(50, 250, 0, 200, 80, "Pretty bad still (400)", integer -> {
+                addItem(new Button(100, 250, 0, 200, 80, "Pretty bad still (400)", integer -> {
                     stage++;
                     try {
                         Thread.sleep(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.gameType = GameType.PlayerBoth;
+                    GameChoiceStorage.difficultyAsRating = 400;
+                    createObjects();
+                }, this));
+                addItem(new Button(350, 250, 0, 200, 80, "OK (800)", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.difficultyAsRating = 800;
+                    createObjects();
+                }, this));
+                addItem(new Button(350, 250, 0, 200, 80, "Average (800)", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.difficultyAsRating = 800;
                     createObjects();
                 }, this));
             }
+            case 3 -> {
+                noPages = 1;
+                page = 1;
+                if (GameChoiceStorage.difficultyAsRating < 1000) {
+                    clickySpots.clear();
+                    clearItems();
+                    Game.currentState = WindowState.Game;
+                    return;
+                }
+
+            }
+        }
+        if (WIDTH - StartScreen.heightToWidthDifference < HEIGHT) {
+            resizeObjects(WIDTH / (Constants.GAME_START_WIDTH * 1F), 0);
+        } else if (WIDTH - StartScreen.heightToWidthDifference > HEIGHT) {
+            resizeObjects(HEIGHT / (Constants.GAME_START_HEIGHT * 1F), 1);
         }
     }
 

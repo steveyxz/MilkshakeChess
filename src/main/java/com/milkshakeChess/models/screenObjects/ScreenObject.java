@@ -14,6 +14,8 @@ public abstract class ScreenObject {
     protected int startingY;
     protected boolean visible = true;
 
+    public int pageOn = 1;
+
     public int getX() {
         return x;
     }

@@ -33,8 +33,13 @@ public class Button extends ScreenObject {
         setObjectToAction();
     }
 
+    public Button(int x, int y, int rotation, int width, int height, String text, Consumer<Integer> action, IHasClickSpots mainClass, Color textColor, Color bodyColor, double arc, int pageOn) {
+        this(x, y, rotation, width, height, text, action, mainClass, textColor, bodyColor, arc);
+        this.pageOn = pageOn;
+    }
+
     public Button(int x, int y, int rotation, int width, int height, String text, Consumer<Integer> action, IHasClickSpots mainClass) {
-        this(x, y, rotation, width, height, text, action, mainClass, Color.white, Color.black, 0);
+        this(x, y, rotation, width, height, text, action, mainClass, Color.white, Color.black, 50);
     }
 
     public void setObjectToAction() {
@@ -60,7 +65,7 @@ public class Button extends ScreenObject {
     @Override
     public void render(Graphics g) {
         g.setColor(buttonColor);
-        g.fillRect(x, y, width, height);
+        g.fillRoundRect(x, y, width, height, (int) arc, (int) arc);
         g.setColor(textColor);
         float size = (5F / text.length()) * 40 * (Game.WIDTH < Game.HEIGHT ? Game.WIDTH / (Constants.GAME_START_WIDTH * 1F) : Game.HEIGHT / (Constants.GAME_START_HEIGHT * 1F));
         Font font = FontManager.getResizedFont(FontManager.kgTenK2, size);
