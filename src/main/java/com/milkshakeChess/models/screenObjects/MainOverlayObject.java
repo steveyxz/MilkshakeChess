@@ -1,7 +1,5 @@
 package com.milkshakeChess.models.screenObjects;
 
-import com.milkshakeChess.models.screenObjects.ScreenObject;
-
 public abstract class MainOverlayObject extends ScreenObject {
 
     public MainOverlayObject(int x, int y, int rotation, int width, int height) {

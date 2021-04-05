@@ -2,12 +2,8 @@ package com.milkshakeChess;
 
 import java.awt.*;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 
 public class FontManager {

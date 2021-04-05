@@ -115,7 +115,7 @@ public class StartScreen extends Screen {
                     clearItems();
                     Game.currentState = WindowState.Game;
                 }
-                addItem(new Button(50, 150, 0, 200, 80, "Play Black", integer -> {
+                addItem(new Button(50, 150, 0, 200, 80, "Completely Stupid (<100)", integer -> {
                     stage++;
                     try {
                         Thread.sleep(1);
@@ -125,7 +125,7 @@ public class StartScreen extends Screen {
                     GameChoiceStorage.gameType = GameType.PlayerBlack;
                     createObjects();
                 }, this));
-                addItem(new Button(350, 150, 0, 200, 80, "Play White", integer -> {
+                addItem(new Button(350, 150, 0, 200, 80, "Trash (200)", integer -> {
                     stage++;
                     try {
                         Thread.sleep(1);
@@ -135,7 +135,7 @@ public class StartScreen extends Screen {
                     GameChoiceStorage.gameType = GameType.PlayerWhite;
                     createObjects();
                 }, this));
-                addItem(new Button(150, 250, 0, 350, 80, "Play Both  (No AI)", integer -> {
+                addItem(new Button(50, 250, 0, 200, 80, "Pretty bad still (400)", integer -> {
                     stage++;
                     try {
                         Thread.sleep(1);

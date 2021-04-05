@@ -63,7 +63,7 @@ public class Button extends ScreenObject {
         g.fillRect(x, y, width, height);
         g.setColor(textColor);
         float size = (5F / text.length()) * 40 * (Game.WIDTH < Game.HEIGHT ? Game.WIDTH / (Constants.GAME_START_WIDTH * 1F) : Game.HEIGHT / (Constants.GAME_START_HEIGHT * 1F));
-        Font font = FontManager.getResizedFont(FontManager.avengerTitleFont, size);
+        Font font = FontManager.getResizedFont(FontManager.kgTenK2, size);
         g.setFont(font);
         g.drawString(text, x + (width / 2) - g.getFontMetrics(font).stringWidth(text) / 2, y + (height / 2) + g.getFontMetrics(font).getHeight() / 4);
     }
