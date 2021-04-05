@@ -42,13 +42,13 @@ public class FontManager {
         fontInput = new ByteArrayInputStream(fontSrc);
 
         kgTenK1 = Font.createFont(Font.TRUETYPE_FONT, fontInput);
-        kgTenK1 = debrosee.deriveFont(30F);
+        kgTenK1 = kgTenK1.deriveFont(30F);
 
         fontSrc = Objects.requireNonNull(FontManager.class.getResourceAsStream("/fonts/KgTenThousand2.ttf")).readAllBytes();
         fontInput = new ByteArrayInputStream(fontSrc);
 
         kgTenK2 = Font.createFont(Font.TRUETYPE_FONT, fontInput);
-        kgTenK2 = debrosee.deriveFont(30F);
+        kgTenK2 = kgTenK2.deriveFont(30F);
     }
 
     public static Font getResizedFont(Font font, float size) {
