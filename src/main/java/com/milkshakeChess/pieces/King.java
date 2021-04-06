@@ -15,11 +15,19 @@ public class King extends Piece {
     }
 
     @Override
-    public void render(Graphics g) {
-        if (this.sideID == SideID.Black) {
-            g.drawImage(Game.blackKingIMG, x, y, board.squareWidth, board.squareWidth, null);
+    public void render(Graphics g, boolean isWhite) {
+        if (isWhite) {
+            if (this.sideID == SideID.Black) {
+                g.drawImage(Game.blackKingIMG, x, y, board.squareWidth, board.squareWidth, null);
+            } else {
+                g.drawImage(Game.whiteKingIMG, x, y, board.squareWidth, board.squareWidth, null);
+            }
         } else {
-            g.drawImage(Game.whiteKingIMG, x, y, board.squareWidth, board.squareWidth, null);
+            if (this.sideID == SideID.White) {
+                g.drawImage(Game.whiteKingIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+            } else {
+                g.drawImage(Game.blackKingIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+            }
         }
     }
 

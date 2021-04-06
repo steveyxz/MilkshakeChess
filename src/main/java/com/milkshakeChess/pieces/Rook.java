@@ -15,11 +15,19 @@ public class Rook extends Piece {
     }
 
     @Override
-    public void render(Graphics g) {
-        if (this.sideID == SideID.Black) {
-            g.drawImage(Game.blackRookIMG, x, y, board.squareWidth, board.squareWidth, null);
+    public void render(Graphics g, boolean isWhite) {
+        if (isWhite) {
+            if (this.sideID == SideID.Black) {
+                g.drawImage(Game.blackRookIMG, x, y, board.squareWidth, board.squareWidth, null);
+            } else {
+                g.drawImage(Game.whiteRookIMG, x, y, board.squareWidth, board.squareWidth, null);
+            }
         } else {
-            g.drawImage(Game.whiteRookIMG, x, y, board.squareWidth, board.squareWidth, null);
+            if (this.sideID == SideID.White) {
+                g.drawImage(Game.whiteRookIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+            } else {
+                g.drawImage(Game.blackRookIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+            }
         }
     }
 

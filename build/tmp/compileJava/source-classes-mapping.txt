@@ -40,36 +40,36 @@ com/milkshakeChess/objects/startScreen/PageSwitcher.java
  com.milkshakeChess.objects.startScreen.PageSwitcher
 com/milkshakeChess/screens/MainOverlay.java
  com.milkshakeChess.screens.MainOverlay
-com/milkshakeChess/pieces/Rook.java
- com.milkshakeChess.pieces.Rook
-com/milkshakeChess/pieces/Empty.java
- com.milkshakeChess.pieces.Empty
-com/milkshakeChess/pieces/Knight.java
- com.milkshakeChess.pieces.Knight
-com/milkshakeChess/screens/StartScreen.java
- com.milkshakeChess.screens.StartScreen
 com/milkshakeChess/screens/CheckmateScreen.java
  com.milkshakeChess.screens.CheckmateScreen
+com/milkshakeChess/pieces/Empty.java
+ com.milkshakeChess.pieces.Empty
+com/milkshakeChess/Window.java
+ com.milkshakeChess.Window
+ com.milkshakeChess.Window$1
+com/milkshakeChess/screens/StartScreen.java
+ com.milkshakeChess.screens.StartScreen
+com/milkshakeChess/pieces/Bishop.java
+ com.milkshakeChess.pieces.Bishop
 com/milkshakeChess/Game.java
  com.milkshakeChess.Game
 com/milkshakeChess/util/Move.java
  com.milkshakeChess.util.Move
-com/milkshakeChess/pieces/Queen.java
- com.milkshakeChess.pieces.Queen
+com/milkshakeChess/models/Piece.java
+ com.milkshakeChess.models.Piece
 com/milkshakeChess/processors/GraphicsProcessor.java
  com.milkshakeChess.processors.GraphicsProcessor
 com/milkshakeChess/models/Screen.java
  com.milkshakeChess.models.Screen
-com/milkshakeChess/models/Piece.java
- com.milkshakeChess.models.Piece
-com/milkshakeChess/pieces/Pawn.java
- com.milkshakeChess.pieces.Pawn
-com/milkshakeChess/Window.java
- com.milkshakeChess.Window
- com.milkshakeChess.Window$1
-com/milkshakeChess/pieces/King.java
- com.milkshakeChess.pieces.King
+com/milkshakeChess/pieces/Queen.java
+ com.milkshakeChess.pieces.Queen
 com/milkshakeChess/util/Board.java
  com.milkshakeChess.util.Board
-com/milkshakeChess/pieces/Bishop.java
- com.milkshakeChess.pieces.Bishop
+com/milkshakeChess/pieces/Pawn.java
+ com.milkshakeChess.pieces.Pawn
+com/milkshakeChess/pieces/Knight.java
+ com.milkshakeChess.pieces.Knight
+com/milkshakeChess/pieces/King.java
+ com.milkshakeChess.pieces.King
+com/milkshakeChess/pieces/Rook.java
+ com.milkshakeChess.pieces.Rook

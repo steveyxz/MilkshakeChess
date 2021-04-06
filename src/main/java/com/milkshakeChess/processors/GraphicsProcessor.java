@@ -62,7 +62,14 @@ public class GraphicsProcessor implements Runnable {
                 renderBoard(g);
             }
 
-            board.render(g);
+            boolean isWhite;
+            if (GameChoiceStorage.gameType == GameType.PlayerBlack) {
+                isWhite = false;
+            } else {
+                isWhite = true;
+            }
+
+            board.render(g, isWhite);
 
         } else if (Game.currentState == WindowState.Start) {
             Game.startScreen.render(g);

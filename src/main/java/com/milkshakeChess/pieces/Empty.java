@@ -14,7 +14,7 @@ public class Empty extends Piece {
     }
 
     @Override
-    public void render(Graphics g) {
+    public void render(Graphics g, boolean isWhite) {
 
     }
 

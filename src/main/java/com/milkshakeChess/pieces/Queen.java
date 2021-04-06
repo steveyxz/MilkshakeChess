@@ -15,11 +15,19 @@ public class Queen extends Piece {
     }
 
     @Override
-    public void render(Graphics g) {
-        if (this.sideID == SideID.Black) {
-            g.drawImage(Game.blackQueenIMG, x, y, board.squareWidth, board.squareWidth, null);
+    public void render(Graphics g, boolean isWhite) {
+        if (isWhite) {
+            if (this.sideID == SideID.Black) {
+                g.drawImage(Game.blackQueenIMG, x, y, board.squareWidth, board.squareWidth, null);
+            } else {
+                g.drawImage(Game.whiteQueenIMG, x, y, board.squareWidth, board.squareWidth, null);
+            }
         } else {
-            g.drawImage(Game.whiteQueenIMG, x, y, board.squareWidth, board.squareWidth, null);
+            if (this.sideID == SideID.White) {
+                g.drawImage(Game.whiteQueenIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+            } else {
+                g.drawImage(Game.blackQueenIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+            }
         }
     }
 

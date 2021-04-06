@@ -126,12 +126,12 @@ public class Board {
         return new int[]{startX + xy[0] * squareWidth, startY + xy[1] * squareWidth};
     }
 
-    public void render(Graphics g) {
+    public void render(Graphics g, boolean isWhite) {
         if (isUnrendered) {
             return;
         }
         for (int i = 0; i < board.size(); i++) {
-            board.get(i).render(g);
+            board.get(i).render(g, isWhite);
         }
     }
 

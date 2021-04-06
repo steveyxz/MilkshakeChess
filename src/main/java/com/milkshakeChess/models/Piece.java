@@ -128,7 +128,7 @@ public abstract class Piece {
         this.board.removePiece(this);
     }
 
-    public abstract void render(Graphics g);
+    public abstract void render(Graphics g, boolean isWhite);
 
     public abstract void tick();
 
@@ -152,5 +152,15 @@ public abstract class Piece {
             g.drawRenderedImage(sbi, at);
         }
         return dbi;
+    }
+
+    public static int convIndexToOpposite(int index, int numberOfRows, int amountOnEachRow) {
+        int rowNumber = index / amountOnEachRow + 1;
+        int newRowNumber = numberOfRows - rowNumber;
+        return Move.convXYToIndex(new int[] {index % 8, newRowNumber});
+    }
+
+    public static int convIndexToOpposite(int index) {
+        return convIndexToOpposite(index, 8, 8);
     }
 }
