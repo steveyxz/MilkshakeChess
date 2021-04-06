@@ -50,6 +50,13 @@ com/milkshakeChess/util/Move.java
  com.milkshakeChess.util.Move
 com/milkshakeChess/pieces/Bishop.java
  com.milkshakeChess.pieces.Bishop
+com/milkshakeChess/enums/gameChoice/Difficulty.java
+ com.milkshakeChess.enums.gameChoice.Difficulty
+com/milkshakeChess/enums/gameChoice/Style.java
+ com.milkshakeChess.enums.gameChoice.Style
+com/milkshakeChess/settings/GameChoiceStorage.java
+ com.milkshakeChess.settings.GameChoiceStorage
+ com.milkshakeChess.settings.GameChoiceStorage$1
 com/milkshakeChess/processors/MoveProcessor.java
  com.milkshakeChess.processors.MoveProcessor
 com/milkshakeChess/Game.java
@@ -60,9 +67,6 @@ com/milkshakeChess/screens/MainOverlay.java
  com.milkshakeChess.screens.MainOverlay
 com/milkshakeChess/processors/GraphicsProcessor.java
  com.milkshakeChess.processors.GraphicsProcessor
-com/milkshakeChess/settings/GameChoiceStorage.java
- com.milkshakeChess.settings.GameChoiceStorage
- com.milkshakeChess.settings.GameChoiceStorage$1
 com/milkshakeChess/models/Screen.java
  com.milkshakeChess.models.Screen
 com/milkshakeChess/Window.java
@@ -72,7 +76,5 @@ com/milkshakeChess/objects/startScreen/Button.java
  com.milkshakeChess.objects.startScreen.Button
 com/milkshakeChess/screens/StartScreen.java
  com.milkshakeChess.screens.StartScreen
-com/milkshakeChess/enums/gameChoice/Difficulty.java
- com.milkshakeChess.enums.gameChoice.Difficulty
 com/milkshakeChess/screens/CheckmateScreen.java
  com.milkshakeChess.screens.CheckmateScreen

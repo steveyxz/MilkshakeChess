@@ -4,6 +4,7 @@ import com.milkshakeChess.FontManager;
 import com.milkshakeChess.Game;
 import com.milkshakeChess.enums.gameChoice.Difficulty;
 import com.milkshakeChess.enums.gameChoice.GameType;
+import com.milkshakeChess.enums.gameChoice.Style;
 import com.milkshakeChess.enums.gameChoice.WindowState;
 import com.milkshakeChess.enums.id.SideID;
 import com.milkshakeChess.interfaces.Constants;
@@ -272,7 +273,7 @@ public class StartScreen extends Screen {
                 }));
             }
             case 3 -> {
-                noPages = 1;
+                noPages = 2;
                 page = 1;
                 if (GameChoiceStorage.convertDifficultyToRating() < 1000) {
                     clickySpots.clear();
@@ -280,7 +281,74 @@ public class StartScreen extends Screen {
                     Game.currentState = WindowState.Game;
                     return;
                 }
-
+                addItem(new Button(100, 150, 0, 200, 80, "Aggressive", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.style = Style.Aggressive;
+                    createObjects();
+                }, this));
+                addItem(new Button(350, 150, 0, 200, 80, "Passive", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.style = Style.Passive;
+                    createObjects();
+                }, this));
+                addItem(new Button(100, 250, 0, 200, 80, "Risky", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.style = Style.Risky;
+                    createObjects();
+                }, this));
+                addItem(new Button(350, 250, 0, 200, 80, "Safe", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.style = Style.Safe;
+                    createObjects();
+                }, this));
+                addItem(new Button(100, 150, 0, 200, 80, "Defensive", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.style = Style.Defensive;
+                    createObjects();
+                }, this, Color.white, Color.BLACK, 50, 2));
+                addItem(new PageSwitcher(30, 200, 0, 20, 50, 0, this, integer -> {
+                    if (page <= 1) {
+                        return;
+                    }
+                    page--;
+                }));
+                addItem(new PageSwitcher(600, 200, 0, 20, 50, 1, this, integer -> {
+                    if (page >= noPages) {
+                        return;
+                    }
+                    page++;
+                }));
+            }
+            case 4 -> {
+                clickySpots.clear();
+                clearItems();
+                Game.currentState = WindowState.Game;
+                return;
             }
         }
         if (WIDTH - StartScreen.heightToWidthDifference < HEIGHT) {

@@ -2,11 +2,13 @@ package com.milkshakeChess.settings;
 
 import com.milkshakeChess.enums.gameChoice.Difficulty;
 import com.milkshakeChess.enums.gameChoice.GameType;
+import com.milkshakeChess.enums.gameChoice.Style;
 
 public class GameChoiceStorage {
 
     public static GameType gameType = GameType.NoneChosen;
     public static Difficulty difficulty = Difficulty.NoneChosen;
+    public static Style style = Style.NoneChosen;
 
     public static int convertDifficultyToRating() {
         return switch (difficulty) {
