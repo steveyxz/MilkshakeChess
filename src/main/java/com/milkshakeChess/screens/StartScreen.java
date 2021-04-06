@@ -150,7 +150,7 @@ public class StartScreen extends Screen {
             }
             case 2 -> {
                 page = 1;
-                noPages = 2;
+                noPages = 3;
                 if (GameChoiceStorage.gameType == GameType.PlayerBoth) {
                     clickySpots.clear();
                     clearItems();
@@ -217,6 +217,46 @@ public class StartScreen extends Screen {
                     GameChoiceStorage.difficultyAsRating = 1000;
                     createObjects();
                 }, this, Color.white, Color.BLACK, 50, 2));
+                addItem(new Button(350, 150, 0, 200, 80, "Intermediate Player (1200)", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.difficultyAsRating = 1000;
+                    createObjects();
+                }, this, Color.white, Color.BLACK, 50, 2));
+                addItem(new Button(100, 250, 0, 200, 80, "Sorta Sweaty Player (1400)", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.difficultyAsRating = 1000;
+                    createObjects();
+                }, this, Color.white, Color.BLACK, 50, 2));
+                addItem(new Button(350, 250, 0, 200, 80, "Sweaty Player (1600)", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.difficultyAsRating = 1000;
+                    createObjects();
+                }, this, Color.white, Color.BLACK, 50, 2));
+                addItem(new Button(100, 150, 0, 200, 80, "Very Sweaty Player (1800)", integer -> {
+                    stage++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    GameChoiceStorage.difficultyAsRating = 1000;
+                    createObjects();
+                }, this, Color.white, Color.BLACK, 50, 3));
                 addItem(new PageSwitcher(600, 200, 0, 20, 50, 1, this, integer -> {
                     if (page >= noPages) {
                         return;
@@ -299,7 +339,7 @@ public class StartScreen extends Screen {
     @Override
     public void render(Graphics g) {
         switch (stage) {
-            case 0, 1, 2 -> {
+            case 0, 1, 2, 3 -> {
                 g.setColor(Color.PINK);
                 g.fillRect(0, 0, 2000, 2000);
                 g.setColor(Color.BLACK);
@@ -332,7 +372,7 @@ public class StartScreen extends Screen {
 
     @Override
     public void tick() {
-        if (tickTimer == 5) {
+        if (tickTimer == 2) {
             for (int i = 0; i < objects.size(); i++) {
                 ScreenObject obj = objects.get(i);
                 if (obj instanceof FakePawn) {
