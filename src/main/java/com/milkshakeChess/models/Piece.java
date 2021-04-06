@@ -6,6 +6,8 @@ import com.milkshakeChess.util.Board;
 import com.milkshakeChess.util.Move;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 public abstract class Piece {
 
@@ -129,4 +131,26 @@ public abstract class Piece {
     public abstract void render(Graphics g);
 
     public abstract void tick();
+
+    /**
+     * scale image
+     *
+     * @param sbi image to scale
+     * @param imageType type of image
+     * @param dWidth width of destination image
+     * @param dHeight height of destination image
+     * @param fWidth x-factor for transformation / scaling
+     * @param fHeight y-factor for transformation / scaling
+     * @return scaled image
+     */
+    public static BufferedImage scale(BufferedImage sbi, int imageType, int dWidth, int dHeight, double fWidth, double fHeight) {
+        BufferedImage dbi = null;
+        if(sbi != null) {
+            dbi = new BufferedImage(dWidth, dHeight, imageType);
+            Graphics2D g = dbi.createGraphics();
+            AffineTransform at = AffineTransform.getScaleInstance(fWidth, fHeight);
+            g.drawRenderedImage(sbi, at);
+        }
+        return dbi;
+    }
 }
