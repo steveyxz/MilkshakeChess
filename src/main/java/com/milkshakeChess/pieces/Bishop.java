@@ -7,6 +7,8 @@ import com.milkshakeChess.models.Piece;
 import com.milkshakeChess.util.Board;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 public class Bishop extends Piece {
 
@@ -16,10 +18,10 @@ public class Bishop extends Piece {
 
     @Override
     public void render(Graphics g) {
-        if (this.sideID == SideID.Black) {
-            g.drawImage(Game.blackBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
-        } else {
+        if (this.sideID == SideID.White) {
             g.drawImage(Game.whiteBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
+        } else {
+            g.drawImage(Game.blackBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
         }
     }
 
