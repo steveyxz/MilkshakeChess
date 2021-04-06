@@ -2,6 +2,7 @@ package com.milkshakeChess.screens;
 
 import com.milkshakeChess.FontManager;
 import com.milkshakeChess.Game;
+import com.milkshakeChess.enums.gameChoice.Difficulty;
 import com.milkshakeChess.enums.gameChoice.GameType;
 import com.milkshakeChess.enums.gameChoice.WindowState;
 import com.milkshakeChess.enums.id.SideID;
@@ -16,7 +17,7 @@ import com.milkshakeChess.settings.GameChoiceStorage;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
-import java.util.function.Consumer;
+import com.milkshakeChess.enums.gameChoice.Difficulty.*;
 
 import static com.milkshakeChess.Game.*;
 
@@ -164,7 +165,7 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 50;
+                    GameChoiceStorage.difficulty = Difficulty.CompletelyStupid;
                     createObjects();
                 }, this));
                 addItem(new Button(350, 150, 0, 200, 80, "Trash (200)", integer -> {
@@ -174,7 +175,7 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 200;
+                    GameChoiceStorage.difficulty = Difficulty.Trash;
                     createObjects();
                 }, this));
                 addItem(new Button(100, 250, 0, 200, 80, "Pretty bad still (400)", integer -> {
@@ -184,17 +185,17 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 400;
+                    GameChoiceStorage.difficulty = Difficulty.PrettyBadStill;
                     createObjects();
                 }, this));
-                addItem(new Button(350, 250, 0, 200, 80, "OK (800)", integer -> {
+                addItem(new Button(350, 250, 0, 200, 80, "OK (600)", integer -> {
                     stage++;
                     try {
                         Thread.sleep(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 800;
+                    GameChoiceStorage.difficulty = Difficulty.OK;
                     createObjects();
                 }, this));
                 addItem(new Button(350, 250, 0, 200, 80, "Average (800)", integer -> {
@@ -204,7 +205,7 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 800;
+                    GameChoiceStorage.difficulty = Difficulty.Average;
                     createObjects();
                 }, this));
                 addItem(new Button(100, 150, 0, 200, 80, "Regular Player (1000)", integer -> {
@@ -214,7 +215,7 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 1000;
+                    GameChoiceStorage.difficulty = Difficulty.RegularPlayer;
                     createObjects();
                 }, this, Color.white, Color.BLACK, 50, 2));
                 addItem(new Button(350, 150, 0, 200, 80, "Intermediate Player (1200)", integer -> {
@@ -224,7 +225,7 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 1000;
+                    GameChoiceStorage.difficulty = Difficulty.IntermediatePlayer;
                     createObjects();
                 }, this, Color.white, Color.BLACK, 50, 2));
                 addItem(new Button(100, 250, 0, 200, 80, "Sorta Sweaty Player (1400)", integer -> {
@@ -234,7 +235,7 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 1000;
+                    GameChoiceStorage.difficulty = Difficulty.SortaSweatyPlayer;
                     createObjects();
                 }, this, Color.white, Color.BLACK, 50, 2));
                 addItem(new Button(350, 250, 0, 200, 80, "Sweaty Player (1600)", integer -> {
@@ -244,7 +245,7 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 1000;
+                    GameChoiceStorage.difficulty = Difficulty.SweatyPlayer;
                     createObjects();
                 }, this, Color.white, Color.BLACK, 50, 2));
                 addItem(new Button(100, 150, 0, 200, 80, "Very Sweaty Player (1800)", integer -> {
@@ -254,7 +255,7 @@ public class StartScreen extends Screen {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    GameChoiceStorage.difficultyAsRating = 1000;
+                    GameChoiceStorage.difficulty = Difficulty.VerySweatyPlayer;
                     createObjects();
                 }, this, Color.white, Color.BLACK, 50, 3));
                 addItem(new PageSwitcher(600, 200, 0, 20, 50, 1, this, integer -> {
@@ -273,7 +274,7 @@ public class StartScreen extends Screen {
             case 3 -> {
                 noPages = 1;
                 page = 1;
-                if (GameChoiceStorage.difficultyAsRating < 1000) {
+                if (GameChoiceStorage.convertDifficultyToRating() < 1000) {
                     clickySpots.clear();
                     clearItems();
                     Game.currentState = WindowState.Game;
