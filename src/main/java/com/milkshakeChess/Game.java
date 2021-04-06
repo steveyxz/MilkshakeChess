@@ -80,7 +80,7 @@ public class Game extends Canvas implements Runnable {
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageSrc);
             BufferedImage IMG = ImageIO.read(byteArrayInputStream);
             IMG = IMG.getSubimage((2000 / 6) * (x - 1), (y - 1) * (668 / 2), 2000 / 6, 668 / 2);
-            return IMG.getScaledInstance(width, height, BufferedImage.SCALE_AREA_AVERAGING);
+            return IMG.getScaledInstance(width, height, BufferedImage.SCALE_DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,7 +95,7 @@ public class Game extends Canvas implements Runnable {
     public void run() {
         this.requestFocus();
         long lastTime = System.nanoTime();
-        double amountOfTicks = 10.0;
+        double amountOfTicks = 4.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
