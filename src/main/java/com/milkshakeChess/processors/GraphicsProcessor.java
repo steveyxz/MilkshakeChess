@@ -16,6 +16,8 @@ public class GraphicsProcessor implements Runnable {
 
     private final Board board;
     private final Game game;
+    public static boolean boardReRender = true;
+    public static boolean backgroundReRender = true;
 
     public GraphicsProcessor(Board board, Game game) {
         this.board = board;
@@ -24,6 +26,7 @@ public class GraphicsProcessor implements Runnable {
 
     @Override
     public void run() {
+
         int frames = 0;
         double timer = System.currentTimeMillis();
         while (Game.running) {
@@ -46,14 +49,18 @@ public class GraphicsProcessor implements Runnable {
         }
 
         Graphics g = bs.getDrawGraphics();
-        Graphics2D g2D = (Graphics2D) g;
 
         if (Game.currentState == WindowState.Game) {
 
-            g.setColor(Color.BLACK);
-            g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+            if (backgroundReRender) {
+                g.setColor(Color.BLACK);
+                g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+                backgroundReRender = false;
+            }
 
-            renderBoard(g);
+            if (boardReRender) {
+                renderBoard(g);
+            }
 
             board.render(g);
 
@@ -95,5 +102,6 @@ public class GraphicsProcessor implements Runnable {
                 }
             }
         }
+        boardReRender = false;
     }
 }

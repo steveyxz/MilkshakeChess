@@ -1,6 +1,7 @@
 package com.milkshakeChess;
 
 import com.milkshakeChess.interfaces.Constants;
+import com.milkshakeChess.processors.GraphicsProcessor;
 import com.milkshakeChess.screens.StartScreen;
 
 import javax.imageio.ImageIO;
@@ -38,6 +39,8 @@ public class Window {
                     board.squareWidth = WIDTH / 10;
                 }
                 board.resizeBoardPieces();
+                GraphicsProcessor.backgroundReRender = true;
+                GraphicsProcessor.boardReRender = true;
                 if (WIDTH - StartScreen.heightToWidthDifference < HEIGHT) {
                     startScreen.resizeObjects(WIDTH / (Constants.GAME_START_WIDTH * 1F), 0);
                 } else if (WIDTH - StartScreen.heightToWidthDifference > HEIGHT) {
