@@ -13,6 +13,7 @@ import com.milkshakeChess.util.Board;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +42,12 @@ public class Game extends Canvas implements Runnable {
     public static int newWidth = 0;
     public static int oldHeight = 0;
     public static int newHeight = 0;
+
+    public static int oldSquareSide;
+    public static int newSquareSide;
+
+    public static double oldMilliDelay = 0;
+    public static double newMilliDelay = 0;
 
     public static GameType currentGame = GameType.PlayerBoth;
     public static WindowState currentState = WindowState.Start;
@@ -121,6 +128,7 @@ public class Game extends Canvas implements Runnable {
         long timer = System.currentTimeMillis();
         int frames = 0;
         Thread graphicsProcessor = new Thread(new GraphicsProcessor(board, this));
+        graphicsProcessor.setName("Graphics Thread (GraphicsProcessor.java)");
         graphicsProcessor.start();
         while (running) {
             long now = System.nanoTime();
@@ -178,8 +186,53 @@ public class Game extends Canvas implements Runnable {
         pieceImages.add(whitePawnIMG);
     }
 
+    @SuppressWarnings("all")
+    public void resizeImages() {
+        /*
+        int sideLength = board.squareWidth;
+        System.out.println(sideLength);
+        BufferedImage image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(whiteBishopIMG, 0, 0, sideLength, sideLength, null);
+        whiteBishopIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(whiteKingIMG, 0, 0, sideLength, sideLength, null);
+        whiteKingIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(whiteKnightIMG, 0, 0, sideLength, sideLength, null);
+        whiteKnightIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(whiteRookIMG, 0, 0, sideLength, sideLength, null);
+        whiteRookIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(whiteQueenIMG, 0, 0, sideLength, sideLength, null);
+        whiteQueenIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(whitePawnIMG, 0, 0, sideLength, sideLength, null);
+        whitePawnIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(blackBishopIMG, 0, 0, sideLength, sideLength, null);
+        blackBishopIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(blackKnightIMG, 0, 0, sideLength, sideLength, null);
+        blackKingIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(blackKnightIMG, 0, 0, sideLength, sideLength, null);
+        blackKnightIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(blackRookIMG, 0, 0, sideLength, sideLength, null);
+        blackRookIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(blackQueenIMG, 0, 0, sideLength, sideLength, null);
+        blackQueenIMG = image;
+        image = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        image.getGraphics().drawImage(blackPawnIMG, 0, 0, sideLength, sideLength, null);
+        blackPawnIMG = image;
+         */
+    }
+
     public synchronized void start() {
         thread = new Thread(this);
+        thread.setName("Main Thread (Game.java)");
         thread.start();
         running = true;
     }

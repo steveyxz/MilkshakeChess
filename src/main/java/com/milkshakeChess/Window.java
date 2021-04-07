@@ -28,17 +28,26 @@ public class Window {
 
         frame.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent componentEvent) {
+
+                oldMilliDelay = newMilliDelay;
+                newMilliDelay = System.currentTimeMillis();
                 oldWidth = WIDTH;
                 oldHeight = HEIGHT;
+                oldSquareSide = board.squareWidth;
                 WIDTH = componentEvent.getComponent().getBounds().width;
                 HEIGHT = componentEvent.getComponent().getBounds().height;
                 newHeight = HEIGHT;
                 newWidth = WIDTH;
                 board.squareWidth = HEIGHT / 10;
+                newSquareSide = board.squareWidth;
                 if (WIDTH / 10 < board.squareWidth) {
                     board.squareWidth = WIDTH / 10;
                 }
                 board.resizeBoardPieces();
+                if (oldSquareSide != newSquareSide && newMilliDelay - oldMilliDelay > 10) {
+                    game.resizeImages();
+                }
+                game.resizeImages();
                 GraphicsProcessor.backgroundReRender = true;
                 GraphicsProcessor.boardReRender = true;
                 if (WIDTH - StartScreen.heightToWidthDifference < HEIGHT) {
