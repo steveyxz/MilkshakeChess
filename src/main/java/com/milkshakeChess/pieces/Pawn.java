@@ -10,6 +10,8 @@ import java.awt.*;
 
 public class Pawn extends Piece {
 
+    public boolean isOnFirstMove = true;
+
     public Pawn(int x, int y, int width, int height, Board board, PieceID pieceID, SideID sideID, int boardX, int boardY) {
         super(x, y, width, height, board, pieceID, sideID, boardX, boardY);
     }

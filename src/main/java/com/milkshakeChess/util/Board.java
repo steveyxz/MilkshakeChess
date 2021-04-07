@@ -1,9 +1,11 @@
 package com.milkshakeChess.util;
 
+import com.milkshakeChess.enums.gameChoice.GameType;
 import com.milkshakeChess.enums.id.PieceID;
 import com.milkshakeChess.enums.id.SideID;
 import com.milkshakeChess.models.Piece;
 import com.milkshakeChess.pieces.*;
+import com.milkshakeChess.settings.GameChoiceStorage;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -96,6 +98,12 @@ public class Board {
     }
 
     public Piece getSquare(int squareIndex) {
+        if (squareIndex > 63) {
+            return null;
+        }
+        if (squareIndex < 0) {
+            return null;
+        }
         return board.get(squareIndex);
     }
 
@@ -107,23 +115,152 @@ public class Board {
         return true;
     }
 
-    public void move(int startX, int startY, int endX, int endY, boolean force) {
-        move(Move.convXYToIndex(new int[]{startX, startY}), Move.convXYToIndex(new int[]{endX, endY}), force);
-    }
-
     /**
-     *
-     **/
-    public int move(int startIndex, int endIndex, boolean force) {
-        if (getSquare(startIndex).getSideID() == getSquare(endIndex).getSideID()) {
+     * @param move  The move that is to be made.
+     * @param force For when checking if a move is legal, you can force the move
+     *              (meaning it won't check for legality for a second time causing
+     *              a recursion error)
+     * @return An integer containing either 0 or 1, 0 meaning a valid move, 1 meaning an invalid move.
+     */
+
+    public int move(Move move, boolean force) {
+        boolean isEnPassant = true;
+        if (getSquare(move.endIndex) == null) {
             return 1;
+        }
+        if (getSquare(move.startIndex) == null) {
+            throw new NullPointerException("One of the pieces were off the board. ???");
+        }
+        Piece endSquarePiece = getSquare(move.endIndex);
+        Piece startSquarePiece = getSquare(move.startIndex);
+        if (startSquarePiece.getSideID() == endSquarePiece.getSideID()) {
+            return 1;
+        }
+        ArrayList<ArrayList<Integer>> allValidMovesForPiece = getAllValidMovesForPiece(startSquarePiece);
+        if (startSquarePiece instanceof Pawn) {
+            if (!allValidMovesForPiece.get(0).contains(move.endIndex) && !allValidMovesForPiece.get(1).contains(move.endIndex) && !allValidMovesForPiece.get(2).contains(move.endIndex)) {
+                return 1;
+            }
+        } else {
+            if (!allValidMovesForPiece.get(0).contains(move.endIndex) && !allValidMovesForPiece.get(1).contains(move.endIndex)) {
+                return 1;
+            }
+        }
+        if (!force) {
+            if (!Move.isMoveLegal()) {
+                return 1;
+            }
+        }
+        if (startSquarePiece instanceof Pawn) {
+            ((Pawn) startSquarePiece).isOnFirstMove = false;
         }
         return 0;
     }
 
+    /**
+     * This method gets all the valid moves for a specified piece. Valid moves do not
+     * include moves regarding "legality", e.g. moving into check
+     * @param piece The piece being tested.
+     * @return An arraylist containing the valid moves in the format [[possibleMoves], [possibleCaptures], [enPassantMoves], [enPassantCaptures]]
+     */
+    public ArrayList<ArrayList<Integer>> getAllValidMovesForPiece(Piece piece) {
+        ArrayList<Integer> possibleMoves = new ArrayList<>();
+        ArrayList<Integer> possibleCaptures = new ArrayList<>();
+        ArrayList<Integer> possibleEnPassantMoves = new ArrayList<>();
+        ArrayList<Integer> possibleEnPassantCaptures = new ArrayList<>();
+        switch (piece.getPieceID()) {
+            case Pawn -> {
+                int indexToAdd;
+                if (piece.getSideID() == SideID.Black) {
+                    //Movement
+                    int indexOnBoard = piece.getBoardIndex();
+                    indexToAdd = indexOnBoard + 8;
+                    if (isSquareEmpty(indexToAdd)) {
+                        if (indexOnBoard < 56) {
+                            possibleMoves.add(indexToAdd);
+                        }
+                        indexToAdd = indexOnBoard + 16;
+                        if (indexOnBoard < 48) {
+                            if (((Pawn) piece).isOnFirstMove) {
+                                if (isSquareEmpty(indexToAdd)) {
+                                    possibleMoves.add(indexToAdd);
+                                }
+                            }
+                        }
+                    }
+                    //Captures
+                    indexToAdd = indexOnBoard + 9;
+                    if (indexOnBoard < 55 && indexOnBoard % 8 != 7) {
+                        if (isSquareEmpty(indexToAdd, SideID.Black)) {
+                            possibleCaptures.add(indexToAdd);
+                        }
+                    }
+                    indexToAdd = indexOnBoard + 7;
+                    if (indexOnBoard < 56 && indexOnBoard % 8 != 0) {
+                        if (isSquareEmpty(indexToAdd, SideID.Black)) {
+                            possibleCaptures.add(indexToAdd);
+                        }
+                    }
+
+                    //EnPassant
+                    indexToAdd = indexOnBoard + 1;
+                    if (getSquare(indexToAdd).getPieceID() == PieceID.Pawn && getSquare(indexToAdd).getSideID() == SideID.Black) {
+                        if (((Pawn) getSquare(indexToAdd)).isOnFirstMove) {
+                            possibleEnPassantCaptures.add(indexOnBoard);
+                            possibleEnPassantMoves.add(indexOnBoard + 9);
+                        }
+                    }
+                    indexToAdd = indexOnBoard - 1;
+                    if (getSquare(indexToAdd).getPieceID() == PieceID.Pawn && getSquare(indexToAdd).getSideID() == SideID.Black) {
+                        if (((Pawn) getSquare(indexToAdd)).isOnFirstMove) {
+                            possibleEnPassantCaptures.add(indexOnBoard);
+                            possibleEnPassantMoves.add(indexOnBoard + 7);
+                        }
+                    }
+                }
+            }
+        }
+        ArrayList<ArrayList<Integer>> returned = new ArrayList<>();
+        returned.add(possibleMoves);
+        returned.add(possibleCaptures);
+        returned.add(possibleEnPassantMoves);
+        returned.add(possibleEnPassantCaptures);
+        return returned;
+    }
+
+    public boolean isSquareEmpty(int index) {
+        if (index > 63 || index < 0) {
+            return true;
+        }
+        return getSquare(index) instanceof Empty;
+    }
+
+    public boolean isSquareEmpty(int index, SideID ofSide) {
+        return !(getSquare(index) instanceof Empty) && getSquare(index).getSideID() == ofSide;
+    }
+
+    /**
+     * Note that this function does not give a result of a flipped board.
+     * It only gives for if white is on the bottom.
+     * @param index The index of the piece to be tested.
+     * @return The XY on the window.
+     */
     public int[] convertIndexToWindowXY(int index) {
         int[] xy = Move.convIndexToXY(index);
         return new int[]{startX + xy[0] * squareWidth, startY + xy[1] * squareWidth};
+    }
+
+    /**
+     * Note that this method accepts XY on a window not the board.
+     * @param XY The XY on the specific window
+     * @return The index on this board (assuming it is rendered on the window)
+     */
+    public int convertWindowXYToIndex(int[] XY) {
+        int returnValue = (((XY[0] - startX) / squareWidth) + ((XY[1] - startY) / squareWidth) * 8) + 1;
+        if (GameChoiceStorage.gameType == GameType.PlayerBlack) {
+            return 64 - returnValue;
+        }
+        return returnValue - 1;
     }
 
     public void render(Graphics g, boolean isWhite) {

@@ -2,6 +2,8 @@ package com.milkshakeChess;
 
 import com.milkshakeChess.enums.gameChoice.GameType;
 import com.milkshakeChess.enums.gameChoice.WindowState;
+import com.milkshakeChess.inputs.KeyInput;
+import com.milkshakeChess.inputs.BoardMouseInput;
 import com.milkshakeChess.processors.GraphicsProcessor;
 import com.milkshakeChess.screens.CheckmateScreen;
 import com.milkshakeChess.screens.MainOverlay;
@@ -18,7 +20,9 @@ import java.util.ArrayList;
 public class Game extends Canvas implements Runnable {
 
     public static boolean running = false;
+
     public static Board board;
+
     public static Image whiteKingIMG; //White Pieces
     public static Image whiteBishopIMG;
     public static Image whitePawnIMG;
@@ -32,22 +36,29 @@ public class Game extends Canvas implements Runnable {
     public static Image blackQueenIMG;
     public static Image blackKnightIMG;
     public static ArrayList<Image> pieceImages = new ArrayList<>();
+
     public static int oldWidth = 0;
     public static int newWidth = 0;
     public static int oldHeight = 0;
     public static int newHeight = 0;
+
     public static GameType currentGame = GameType.PlayerBoth;
     public static WindowState currentState = WindowState.Start;
     public static StartScreen startScreen;
     public static MainOverlay mainOverlay;
     public static CheckmateScreen checkmateScreen;
+
     public static int WIDTH = 640;
     public static int HEIGHT = WIDTH / 12 * 9;
     private static int FPS = 0;
+
     private Thread graphicsProcessor;
     private Thread moveProcessor;
     private Thread thread;
+
     public FontManager fontManager;
+    public KeyInput keyInput;
+    public BoardMouseInput boardMouseInput;
 
     public Game() {
 
@@ -61,6 +72,15 @@ public class Game extends Canvas implements Runnable {
         checkmateScreen = new CheckmateScreen(this);
         startScreen = new StartScreen(this);
         mainOverlay = new MainOverlay(this, board);
+
+        keyInput = new KeyInput();
+        boardMouseInput = new BoardMouseInput(this, board);
+
+        this.addMouseListener(boardMouseInput);
+        this.addMouseMotionListener(boardMouseInput);
+        this.addMouseWheelListener(boardMouseInput);
+
+        this.addKeyListener(keyInput);
 
         this.addMouseListener(checkmateScreen);
         this.addMouseListener(startScreen);

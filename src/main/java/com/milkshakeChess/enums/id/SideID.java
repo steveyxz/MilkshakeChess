@@ -4,5 +4,12 @@ public enum SideID {
     Black,
     White,
     Board,
-    Empty
+    Empty;
+
+    public static SideID toggle(SideID id) {
+        if (id == Black) {
+            return White;
+        }
+        return Black;
+    }
 }
