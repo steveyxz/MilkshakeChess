@@ -48,10 +48,18 @@ public class Board {
     }
 
     public void resizeBoardPieces() {
-        for (int i = 0; i < board.size(); i++) {
-            Piece currentPiece = board.get(i);
-            currentPiece.setX(convertIndexToWindowXY(currentPiece.getBoardIndex())[0]);
-            currentPiece.setY(convertIndexToWindowXY(currentPiece.getBoardIndex())[1]);
+        if (GameChoiceStorage.gameType != GameType.PlayerBlack) {
+            for (int i = 0; i < board.size(); i++) {
+                Piece currentPiece = board.get(i);
+                currentPiece.setX(convertIndexToWindowXY(currentPiece.getBoardIndex())[0]);
+                currentPiece.setY(convertIndexToWindowXY(currentPiece.getBoardIndex())[1]);
+            }
+        } else {
+            for (int i = 0; i < board.size(); i++) {
+                Piece currentPiece = board.get(i);
+                currentPiece.setX(convertIndexToWindowXY(Piece.convIndexToOpposite(currentPiece.getBoardIndex()))[0]);
+                currentPiece.setY(convertIndexToWindowXY(Piece.convIndexToOpposite(currentPiece.getBoardIndex()))[1]);
+            }
         }
     }
 

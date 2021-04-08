@@ -18,18 +18,10 @@ public class Bishop extends Piece {
 
     @Override
     public void render(Graphics g, boolean isWhite) {
-        if (isWhite) {
-            if (this.sideID == SideID.White) {
-                g.drawImage(Game.whiteBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
-            } else {
-                g.drawImage(Game.blackBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
-            }
+        if (this.sideID == SideID.White) {
+            g.drawImage(Game.whiteBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
         } else {
-            if (this.sideID == SideID.White) {
-                g.drawImage(Game.whiteBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
-            } else {
-                g.drawImage(Game.blackBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
-            }
+            g.drawImage(Game.blackBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
         }
     }
 

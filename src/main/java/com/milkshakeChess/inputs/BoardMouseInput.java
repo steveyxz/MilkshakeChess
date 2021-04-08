@@ -60,6 +60,9 @@ public class BoardMouseInput extends MouseAdapter {
         if (focusedPiece == null) {
             return;
         }
+        if (focusedPiece.getSideID() != sideOn) {
+            return;
+        }
         focusedPiece.setX(e.getX());
         focusedPiece.setY(e.getY());
     }

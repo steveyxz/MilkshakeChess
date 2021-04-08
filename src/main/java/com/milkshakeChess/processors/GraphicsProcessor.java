@@ -107,7 +107,7 @@ public class GraphicsProcessor implements Runnable {
             }
             board.render(g, isWhite);
 
-
+            g.dispose();
 
 
         } else if (Game.currentState == WindowState.Start) {
@@ -120,8 +120,12 @@ public class GraphicsProcessor implements Runnable {
             Game.startScreen.render(g);
         }
 
+        try {
+            Thread.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         bs.show();
-        g.dispose();
 
     }
 

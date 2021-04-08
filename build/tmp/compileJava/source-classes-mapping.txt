@@ -35,49 +35,37 @@ com/milkshakeChess/models/screenObjects/MainOverlayObject.java
  com.milkshakeChess.models.screenObjects.MainOverlayObject
 com/milkshakeChess/models/interfaces/IObjectContainer.java
  com.milkshakeChess.models.interfaces.IObjectContainer
-com/milkshakeChess/util/Move.java
- com.milkshakeChess.util.Move
+com/milkshakeChess/objects/startScreen/Button.java
+ com.milkshakeChess.objects.startScreen.Button
 com/milkshakeChess/objects/startScreen/FakePawn.java
  com.milkshakeChess.objects.startScreen.FakePawn
 com/milkshakeChess/enums/gameChoice/GameType.java
  com.milkshakeChess.enums.gameChoice.GameType
-com/milkshakeChess/pieces/Rook.java
- com.milkshakeChess.pieces.Rook
-com/milkshakeChess/pieces/King.java
- com.milkshakeChess.pieces.King
-com/milkshakeChess/pieces/Pawn.java
- com.milkshakeChess.pieces.Pawn
-com/milkshakeChess/util/Board.java
- com.milkshakeChess.util.Board
- com.milkshakeChess.util.Board$1
-com/milkshakeChess/models/Piece.java
- com.milkshakeChess.models.Piece
-com/milkshakeChess/pieces/Empty.java
- com.milkshakeChess.pieces.Empty
-com/milkshakeChess/pieces/Knight.java
- com.milkshakeChess.pieces.Knight
-com/milkshakeChess/pieces/Queen.java
- com.milkshakeChess.pieces.Queen
-com/milkshakeChess/pieces/Bishop.java
- com.milkshakeChess.pieces.Bishop
-com/milkshakeChess/objects/startScreen/Button.java
- com.milkshakeChess.objects.startScreen.Button
 com/milkshakeChess/processors/MoveProcessor.java
  com.milkshakeChess.processors.MoveProcessor
-com/milkshakeChess/screens/CheckmateScreen.java
- com.milkshakeChess.screens.CheckmateScreen
 com/milkshakeChess/objects/startScreen/PageSwitcher.java
  com.milkshakeChess.objects.startScreen.PageSwitcher
 com/milkshakeChess/screens/MainOverlay.java
  com.milkshakeChess.screens.MainOverlay
-com/milkshakeChess/screens/StartScreen.java
- com.milkshakeChess.screens.StartScreen
+com/milkshakeChess/util/Board.java
+ com.milkshakeChess.util.Board
+ com.milkshakeChess.util.Board$1
 com/milkshakeChess/inputs/BoardMouseInput.java
  com.milkshakeChess.inputs.BoardMouseInput
-com/milkshakeChess/models/Screen.java
- com.milkshakeChess.models.Screen
+com/milkshakeChess/pieces/Empty.java
+ com.milkshakeChess.pieces.Empty
+com/milkshakeChess/pieces/Knight.java
+ com.milkshakeChess.pieces.Knight
+com/milkshakeChess/screens/StartScreen.java
+ com.milkshakeChess.screens.StartScreen
+com/milkshakeChess/pieces/Bishop.java
+ com.milkshakeChess.pieces.Bishop
 com/milkshakeChess/Game.java
  com.milkshakeChess.Game
+com/milkshakeChess/util/Move.java
+ com.milkshakeChess.util.Move
+com/milkshakeChess/pieces/Queen.java
+ com.milkshakeChess.pieces.Queen
 com/milkshakeChess/processors/GraphicsProcessor.java
  com.milkshakeChess.processors.GraphicsProcessor
  com.milkshakeChess.processors.GraphicsProcessor$1
@@ -87,6 +75,18 @@ com/milkshakeChess/processors/GraphicsProcessor.java
  com.milkshakeChess.processors.GraphicsProcessor$5
  com.milkshakeChess.processors.GraphicsProcessor$6
  com.milkshakeChess.processors.PieceProcessor
+com/milkshakeChess/models/Screen.java
+ com.milkshakeChess.models.Screen
+com/milkshakeChess/models/Piece.java
+ com.milkshakeChess.models.Piece
+com/milkshakeChess/pieces/Pawn.java
+ com.milkshakeChess.pieces.Pawn
 com/milkshakeChess/Window.java
  com.milkshakeChess.Window
  com.milkshakeChess.Window$1
+com/milkshakeChess/pieces/King.java
+ com.milkshakeChess.pieces.King
+com/milkshakeChess/screens/CheckmateScreen.java
+ com.milkshakeChess.screens.CheckmateScreen
+com/milkshakeChess/pieces/Rook.java
+ com.milkshakeChess.pieces.Rook

@@ -16,18 +16,10 @@ public class Knight extends Piece {
 
     @Override
     public void render(Graphics g, boolean isWhite) {
-        if (isWhite) {
-            if (this.sideID == SideID.Black) {
-                g.drawImage(Game.blackKnightIMG, x, y, board.squareWidth, board.squareWidth, null);
-            } else {
-                g.drawImage(Game.whiteKnightIMG, x, y, board.squareWidth, board.squareWidth, null);
-            }
+        if (this.sideID == SideID.Black) {
+            g.drawImage(Game.blackKnightIMG, x, y, board.squareWidth, board.squareWidth, null);
         } else {
-            if (this.sideID == SideID.White) {
-                g.drawImage(Game.whiteKnightIMG, x, y, board.squareWidth, board.squareWidth, null);
-            } else {
-                g.drawImage(Game.blackKnightIMG, x, y, board.squareWidth, board.squareWidth, null);
-            }
+            g.drawImage(Game.whiteKnightIMG, x, y, board.squareWidth, board.squareWidth, null);
         }
     }
 
