@@ -24,9 +24,9 @@ public class Knight extends Piece {
             }
         } else {
             if (this.sideID == SideID.White) {
-                g.drawImage(Game.whiteKnightIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+                g.drawImage(Game.whiteKnightIMG, x, y, board.squareWidth, board.squareWidth, null);
             } else {
-                g.drawImage(Game.blackKnightIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+                g.drawImage(Game.blackKnightIMG, x, y, board.squareWidth, board.squareWidth, null);
             }
         }
     }

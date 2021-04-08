@@ -24,9 +24,9 @@ public class Queen extends Piece {
             }
         } else {
             if (this.sideID == SideID.White) {
-                g.drawImage(Game.whiteQueenIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+                g.drawImage(Game.whiteQueenIMG, x, y, board.squareWidth, board.squareWidth, null);
             } else {
-                g.drawImage(Game.blackQueenIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+                g.drawImage(Game.blackQueenIMG, x, y, board.squareWidth, board.squareWidth, null);
             }
         }
     }

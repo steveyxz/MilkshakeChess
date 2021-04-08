@@ -24,9 +24,9 @@ public class Rook extends Piece {
             }
         } else {
             if (this.sideID == SideID.White) {
-                g.drawImage(Game.whiteRookIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+                g.drawImage(Game.whiteRookIMG, x, y, board.squareWidth, board.squareWidth, null);
             } else {
-                g.drawImage(Game.blackRookIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+                g.drawImage(Game.blackRookIMG, x, y, board.squareWidth, board.squareWidth, null);
             }
         }
     }

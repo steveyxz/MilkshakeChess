@@ -3,7 +3,6 @@ package com.milkshakeChess.processors;
 import com.milkshakeChess.Game;
 import com.milkshakeChess.enums.gameChoice.GameType;
 import com.milkshakeChess.enums.gameChoice.WindowState;
-import com.milkshakeChess.models.Piece;
 import com.milkshakeChess.pieces.*;
 import com.milkshakeChess.settings.GameChoiceStorage;
 import com.milkshakeChess.util.Board;
@@ -121,8 +120,9 @@ public class GraphicsProcessor implements Runnable {
             Game.startScreen.render(g);
         }
 
-        g.dispose();
         bs.show();
+        g.dispose();
+
     }
 
     private void initRenderers(Graphics g, Board board) {

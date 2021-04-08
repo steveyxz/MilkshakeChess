@@ -26,9 +26,9 @@ public class Bishop extends Piece {
             }
         } else {
             if (this.sideID == SideID.White) {
-                g.drawImage(Game.whiteBishopIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+                g.drawImage(Game.whiteBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
             } else {
-                g.drawImage(Game.blackBishopIMG, board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[0], board.convertIndexToWindowXY(convIndexToOpposite(boardIndex))[1], board.squareWidth, board.squareWidth, null);
+                g.drawImage(Game.blackBishopIMG, x, y, board.squareWidth, board.squareWidth, null);
             }
         }
     }

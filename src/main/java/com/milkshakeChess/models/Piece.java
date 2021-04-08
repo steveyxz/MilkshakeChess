@@ -155,9 +155,9 @@ public abstract class Piece {
     }
 
     public static int convIndexToOpposite(int index, int numberOfRows, int amountOnEachRow) {
-        int rowNumber = index / amountOnEachRow + 1;
-        int newRowNumber = numberOfRows - rowNumber;
-        return Move.convXYToIndex(new int[] {index % 8, newRowNumber});
+        int rowNumber = index / amountOnEachRow;
+        int newRowNumber = numberOfRows - 1 - rowNumber;
+        return Move.convXYToIndex(new int[] {amountOnEachRow - 1 - (index % 8), newRowNumber});
     }
 
     public static int convIndexToOpposite(int index) {

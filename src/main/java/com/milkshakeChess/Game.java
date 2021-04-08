@@ -74,8 +74,6 @@ public class Game extends Canvas implements Runnable {
         board = new Board(20, 20, 60);
         initIMG();
 
-        board.setThisBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-
         checkmateScreen = new CheckmateScreen(this);
         startScreen = new StartScreen(this);
         mainOverlay = new MainOverlay(this, board);

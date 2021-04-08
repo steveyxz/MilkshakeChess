@@ -15,7 +15,7 @@ public class BoardMouseInput extends MouseAdapter {
 
     private Game game;
     private Board focusedBoard;
-    private Piece focusedPiece;
+    private int focusedIndex;
 
     public static SideID sideOn = SideID.White;
 
@@ -40,24 +40,24 @@ public class BoardMouseInput extends MouseAdapter {
                 mouseY > focusedBoard.startY + focusedBoard.squareWidth * 8)) {
             int boardIndex = focusedBoard.convertWindowXYToIndex(new int[] {mouseX, mouseY});
             Piece testPiece = focusedBoard.getSquare(boardIndex);
-            if (testPiece.getSideID() != sideOn) {
+            if (!(testPiece.getSideID().equals(sideOn))) {
                 return;
             }
             if (testPiece instanceof Empty) {
                 return;
             }
-            testPiece = null;
 
-            focusedPiece = focusedBoard.getSquare(boardIndex);
+            focusedIndex = boardIndex;
         }
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (focusedPiece == null) {
+        if (Game.currentState != WindowState.Game) {
             return;
         }
-        if (Game.currentState != WindowState.Game) {
+        Piece focusedPiece = focusedBoard.getSquare(focusedIndex);
+        if (focusedPiece == null) {
             return;
         }
         focusedPiece.setX(e.getX());

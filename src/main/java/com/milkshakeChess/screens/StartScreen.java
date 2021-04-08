@@ -157,6 +157,7 @@ public class StartScreen extends Screen {
                     clickySpots.clear();
                     clearItems();
                     Game.currentState = WindowState.Game;
+                    board.setThisBoard("rnbkqbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBKQBNR");
                     return;
                 }
                 addItem(new Button(100, 150, 0, 200, 80, "Completely Stupid (<100)", integer -> {
@@ -279,6 +280,7 @@ public class StartScreen extends Screen {
                     clickySpots.clear();
                     clearItems();
                     Game.currentState = WindowState.Game;
+                    board.setThisBoard("rnbkqbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBKQBNR");
                     return;
                 }
                 addItem(new Button(100, 150, 0, 200, 80, "Aggressive", integer -> {
@@ -347,6 +349,7 @@ public class StartScreen extends Screen {
             case 4 -> {
                 clickySpots.clear();
                 clearItems();
+                board.setThisBoard("rnbkqbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBKQBNR");
                 Game.currentState = WindowState.Game;
                 return;
             }
