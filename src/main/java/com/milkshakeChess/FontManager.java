@@ -21,6 +21,10 @@ public class FontManager {
         }
     }
 
+    public static Font getResizedFont(Font font, float size) {
+        return font.deriveFont(size);
+    }
+
     private void initFonts() throws IOException, FontFormatException {
         byte[] fontSrc = Objects.requireNonNull(FontManager.class.getResourceAsStream("/fonts/Subway.ttf")).readAllBytes();
         InputStream fontInput = new ByteArrayInputStream(fontSrc);
@@ -45,10 +49,6 @@ public class FontManager {
 
         kgTenK2 = Font.createFont(Font.TRUETYPE_FONT, fontInput);
         kgTenK2 = kgTenK2.deriveFont(30F);
-    }
-
-    public static Font getResizedFont(Font font, float size) {
-        return font.deriveFont(size);
     }
 
 }

@@ -3,6 +3,7 @@ package com.milkshakeChess.models.screenObjects;
 import java.awt.*;
 
 public abstract class ScreenObject {
+    public int pageOn = 1;
     protected int x;
     protected int y;
     protected int width;
@@ -14,7 +15,29 @@ public abstract class ScreenObject {
     protected int startingY;
     protected boolean visible = true;
 
-    public int pageOn = 1;
+    public ScreenObject(int x, int y, int rotation, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.rotation = rotation;
+        this.width = width;
+        this.height = height;
+        this.startingHeight = height;
+        this.startingWidth = width;
+        this.startingX = x;
+        this.startingY = y;
+    }
+
+    public ScreenObject(int x, int y, int rotation) {
+        this(x, y, rotation, 50, 50);
+    }
+
+    public ScreenObject(int x, int y) {
+        this(x, y, 0);
+    }
+
+    public ScreenObject() {
+        this(0, 0, 0);
+    }
 
     public int getX() {
         return x;
@@ -72,7 +95,6 @@ public abstract class ScreenObject {
         this.startingHeight = startingHeight;
     }
 
-
     public int getStartingX() {
         return startingX;
     }
@@ -95,30 +117,6 @@ public abstract class ScreenObject {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
-    }
-
-    public ScreenObject(int x, int y, int rotation, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.rotation = rotation;
-        this.width = width;
-        this.height = height;
-        this.startingHeight = height;
-        this.startingWidth = width;
-        this.startingX = x;
-        this.startingY = y;
-    }
-
-    public ScreenObject(int x, int y, int rotation) {
-        this(x, y, rotation, 50, 50);
-    }
-
-    public ScreenObject(int x, int y) {
-        this(x, y, 0);
-    }
-
-    public ScreenObject() {
-        this(0, 0, 0);
     }
 
     public abstract void tick();

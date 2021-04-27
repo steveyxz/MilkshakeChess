@@ -35,6 +35,38 @@ public abstract class Piece {
         boardIndex = Move.convXYToIndex(new int[]{boardX, boardY});
     }
 
+    /**
+     * scale image
+     *
+     * @param sbi       image to scale
+     * @param imageType type of image
+     * @param dWidth    width of destination image
+     * @param dHeight   height of destination image
+     * @param fWidth    x-factor for transformation / scaling
+     * @param fHeight   y-factor for transformation / scaling
+     * @return scaled image
+     */
+    public static BufferedImage scale(BufferedImage sbi, int imageType, int dWidth, int dHeight, double fWidth, double fHeight) {
+        BufferedImage dbi = null;
+        if (sbi != null) {
+            dbi = new BufferedImage(dWidth, dHeight, imageType);
+            Graphics2D g = dbi.createGraphics();
+            AffineTransform at = AffineTransform.getScaleInstance(fWidth, fHeight);
+            g.drawRenderedImage(sbi, at);
+        }
+        return dbi;
+    }
+
+    public static int convIndexToOpposite(int index, int numberOfRows, int amountOnEachRow) {
+        int rowNumber = index / amountOnEachRow;
+        int newRowNumber = numberOfRows - 1 - rowNumber;
+        return Move.convXYToIndex(new int[]{amountOnEachRow - 1 - (index % 8), newRowNumber});
+    }
+
+    public static int convIndexToOpposite(int index) {
+        return convIndexToOpposite(index, 8, 8);
+    }
+
     public int getBoardX() {
         return boardX;
     }
@@ -131,36 +163,4 @@ public abstract class Piece {
     public abstract void render(Graphics g, boolean isWhite);
 
     public abstract void tick();
-
-    /**
-     * scale image
-     *
-     * @param sbi image to scale
-     * @param imageType type of image
-     * @param dWidth width of destination image
-     * @param dHeight height of destination image
-     * @param fWidth x-factor for transformation / scaling
-     * @param fHeight y-factor for transformation / scaling
-     * @return scaled image
-     */
-    public static BufferedImage scale(BufferedImage sbi, int imageType, int dWidth, int dHeight, double fWidth, double fHeight) {
-        BufferedImage dbi = null;
-        if(sbi != null) {
-            dbi = new BufferedImage(dWidth, dHeight, imageType);
-            Graphics2D g = dbi.createGraphics();
-            AffineTransform at = AffineTransform.getScaleInstance(fWidth, fHeight);
-            g.drawRenderedImage(sbi, at);
-        }
-        return dbi;
-    }
-
-    public static int convIndexToOpposite(int index, int numberOfRows, int amountOnEachRow) {
-        int rowNumber = index / amountOnEachRow;
-        int newRowNumber = numberOfRows - 1 - rowNumber;
-        return Move.convXYToIndex(new int[] {amountOnEachRow - 1 - (index % 8), newRowNumber});
-    }
-
-    public static int convIndexToOpposite(int index) {
-        return convIndexToOpposite(index, 8, 8);
-    }
 }

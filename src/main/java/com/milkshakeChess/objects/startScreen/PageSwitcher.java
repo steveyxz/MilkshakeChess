@@ -9,8 +9,8 @@ import java.util.function.Consumer;
 public class PageSwitcher extends ScreenObject {
 
     public int direction;
-    private Screen mainClass;
-    private Consumer<Integer> action;
+    private final Screen mainClass;
+    private final Consumer<Integer> action;
 
     //direction is left (previous page) at 0 and right (next page) at 1
     public PageSwitcher(int x, int y, int rotation, int width, int height, int direction, Screen mainClass, Consumer<Integer> action) {
@@ -29,24 +29,24 @@ public class PageSwitcher extends ScreenObject {
         initAction(true);
     }
 
+    public PageSwitcher(int x, int y, int rotation, Screen mainClass, Consumer<Integer> action) {
+        this(x, y, rotation, 50, 50, 0, mainClass, action);
+    }
+
     public void initAction(boolean enable) {
         if (enable) {
             if (direction == 0) {
-                mainClass.weirdShapeClickySpots.put(new Polygon(new int[] {x, x + width, x + width}, new int[] {y + height / 2, y, y + height}, 3), action);
+                mainClass.weirdShapeClickySpots.put(new Polygon(new int[]{x, x + width, x + width}, new int[]{y + height / 2, y, y + height}, 3), action);
             } else {
-                mainClass.weirdShapeClickySpots.put(new Polygon(new int[] {x, x, x + width}, new int[] {y, y + height, y + height / 2}, 3), action);
+                mainClass.weirdShapeClickySpots.put(new Polygon(new int[]{x, x, x + width}, new int[]{y, y + height, y + height / 2}, 3), action);
             }
         } else {
             if (direction == 0) {
-                mainClass.weirdShapeClickySpots.remove(new Polygon(new int[] {x, x + width, x + width}, new int[] {y + height / 2, y, y + height}, 3));
+                mainClass.weirdShapeClickySpots.remove(new Polygon(new int[]{x, x + width, x + width}, new int[]{y + height / 2, y, y + height}, 3));
             } else {
-                mainClass.weirdShapeClickySpots.remove(new Polygon(new int[] {x, x, x + width}, new int[] {y, y + height, y + height / 2}, 3));
+                mainClass.weirdShapeClickySpots.remove(new Polygon(new int[]{x, x, x + width}, new int[]{y, y + height, y + height / 2}, 3));
             }
         }
-    }
-
-    public PageSwitcher(int x, int y, int rotation, Screen mainClass, Consumer<Integer> action) {
-        this(x, y, rotation, 50, 50, 0, mainClass, action);
     }
 
     @Override
@@ -58,9 +58,9 @@ public class PageSwitcher extends ScreenObject {
     public void render(Graphics g) {
         g.setColor(Color.DARK_GRAY);
         if (direction == 0) {
-            g.fillPolygon(new Polygon(new int[] {x, x + width, x + width}, new int[] {y + height / 2, y, y + height}, 3));
+            g.fillPolygon(new Polygon(new int[]{x, x + width, x + width}, new int[]{y + height / 2, y, y + height}, 3));
         } else {
-            g.fillPolygon(new Polygon(new int[] {x, x, x + width}, new int[] {y, y + height, y + height / 2}, 3));
+            g.fillPolygon(new Polygon(new int[]{x, x, x + width}, new int[]{y, y + height, y + height / 2}, 3));
         }
     }
 }

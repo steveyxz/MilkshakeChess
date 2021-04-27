@@ -2,8 +2,8 @@ package com.milkshakeChess;
 
 import com.milkshakeChess.enums.gameChoice.GameType;
 import com.milkshakeChess.enums.gameChoice.WindowState;
-import com.milkshakeChess.inputs.KeyInput;
 import com.milkshakeChess.inputs.BoardMouseInput;
+import com.milkshakeChess.inputs.KeyInput;
 import com.milkshakeChess.processors.GraphicsProcessor;
 import com.milkshakeChess.screens.CheckmateScreen;
 import com.milkshakeChess.screens.MainOverlay;
@@ -13,7 +13,6 @@ import com.milkshakeChess.util.Board;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,14 +57,12 @@ public class Game extends Canvas implements Runnable {
     public static int WIDTH = 640;
     public static int HEIGHT = WIDTH / 12 * 9;
     private static int FPS = 0;
-
-    private Thread graphicsProcessor;
-    private Thread moveProcessor;
-    private Thread thread;
-
     public FontManager fontManager;
     public KeyInput keyInput;
     public BoardMouseInput boardMouseInput;
+    private Thread graphicsProcessor;
+    private Thread moveProcessor;
+    private Thread thread;
 
     public Game() {
 
@@ -94,6 +91,11 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "MilkshakeChess (1.0.0)", this);
     }
 
+    public static void main(String[] args) {
+        new Game();
+        System.gc();
+    }
+
     @SuppressWarnings("all")
     public Image renderPiece(int x, int y, int width, int height, String path) {
         try {
@@ -101,6 +103,7 @@ public class Game extends Canvas implements Runnable {
                 System.out.println("Invalid path: " + path);
                 return null;
             }
+            System.out.println(Game.class.getResource(path).toString());
             byte[] imageSrc = Game.class.getResourceAsStream(path).readAllBytes();
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageSrc);
             BufferedImage IMG = ImageIO.read(byteArrayInputStream);
@@ -110,10 +113,6 @@ public class Game extends Canvas implements Runnable {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        new Game();
     }
 
     @Override

@@ -13,11 +13,10 @@ import java.awt.event.MouseEvent;
 
 public class BoardMouseInput extends MouseAdapter {
 
-    private Game game;
-    private Board focusedBoard;
-    private int focusedIndex;
-
     public static SideID sideOn = SideID.White;
+    private final Game game;
+    private final Board focusedBoard;
+    private int focusedIndex;
 
     public BoardMouseInput(Game game, Board focusedBoard) {
         this.game = game;
@@ -38,7 +37,7 @@ public class BoardMouseInput extends MouseAdapter {
                 mouseX > focusedBoard.startX + focusedBoard.squareWidth * 8 ||
                 mouseY < focusedBoard.startY ||
                 mouseY > focusedBoard.startY + focusedBoard.squareWidth * 8)) {
-            int boardIndex = focusedBoard.convertWindowXYToIndex(new int[] {mouseX, mouseY});
+            int boardIndex = focusedBoard.convertWindowXYToIndex(new int[]{mouseX, mouseY});
             Piece testPiece = focusedBoard.getSquare(boardIndex);
             if (!(testPiece.getSideID().equals(sideOn))) {
                 return;
@@ -63,7 +62,17 @@ public class BoardMouseInput extends MouseAdapter {
         if (focusedPiece.getSideID() != sideOn) {
             return;
         }
-        focusedPiece.setX(e.getX());
-        focusedPiece.setY(e.getY());
+        focusedPiece.setX(e.getX() - 20);
+        focusedPiece.setY(e.getY() - 20);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        Piece focusedPiece = focusedBoard.getSquare(focusedIndex);
+        if (focusedBoard.move(new Move(focusedBoard, focusedIndex, focusedBoard.convertWindowXYToIndex(new int[]{e.getX(), e.getY()})), false) == 1) {
+            int[] xy = focusedBoard.convertIndexToWindowXY(focusedIndex);
+            focusedPiece.setX(xy[0]);
+            focusedPiece.setY(xy[1]);
+        }
     }
 }

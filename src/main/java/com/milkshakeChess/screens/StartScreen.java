@@ -18,22 +18,19 @@ import com.milkshakeChess.settings.GameChoiceStorage;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
-import com.milkshakeChess.enums.gameChoice.Difficulty.*;
 
 import static com.milkshakeChess.Game.*;
 
 public class StartScreen extends Screen {
 
-    public int stage = 0;
     public static double ratio = 1;
-
     public static int totalWidth;
     public static int totalHeight;
     public static double heightToWidthDifference;
     public static int startWidth = 0;
     public static int startHeight = 0;
     public static int fakePawnY = 0;
-
+    public int stage = 0;
     public int page = 1;
     public int noPages = 1;
 
@@ -416,8 +413,8 @@ public class StartScreen extends Screen {
                 g.fillRect(0, 0, 2000, 2000);
                 g.setColor(Color.BLACK);
                 g.setFont(FontManager.getResizedFont(FontManager.avengerTitleFont, Math.min(Game.HEIGHT, Game.WIDTH) / 15F));
-                g.drawString("Milkshake", Game.WIDTH / 2 - g.getFontMetrics(FontManager.avengerTitleFont).stringWidth("Milkshake") / 2 - 20, (int) (fakePawnY + 30 + Game.WIDTH / Constants.GAME_START_WIDTH));
-                g.drawString("Chess", Game.WIDTH / 2 - g.getFontMetrics(FontManager.avengerTitleFont).stringWidth("Chess") / 2 + 20, (int) ((int) (fakePawnY + 60 + Game.WIDTH / Constants.GAME_START_WIDTH * 2)));
+                g.drawString("Milkshake", Game.WIDTH / 2 - g.getFontMetrics(FontManager.avengerTitleFont).stringWidth("Milkshake") / 2 - 20, fakePawnY + 30 + Game.WIDTH / Constants.GAME_START_WIDTH);
+                g.drawString("Chess", Game.WIDTH / 2 - g.getFontMetrics(FontManager.avengerTitleFont).stringWidth("Chess") / 2 + 20, fakePawnY + 60 + Game.WIDTH / Constants.GAME_START_WIDTH * 2);
                 for (int i = 0; i < objects.size(); i++) {
                     if (objects.get(i) instanceof Button) {
                         if (objects.get(i).pageOn != page) {

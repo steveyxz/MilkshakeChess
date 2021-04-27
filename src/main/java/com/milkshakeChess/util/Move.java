@@ -13,7 +13,7 @@ public class Move {
     }
 
     public Move(Board board, int startX, int startY, int endX, int endY) {
-        this(board, new int[] {startX, startY}, new int[] {endX, endY});
+        this(board, new int[]{startX, startY}, new int[]{endX, endY});
     }
 
     public Move(Board board, int[] startXY, int[] endXY) {

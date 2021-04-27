@@ -18,17 +18,16 @@ import java.lang.reflect.Type;
 @SuppressWarnings("all")
 public class GraphicsProcessor implements Runnable {
 
-    private final Board board;
-    private final Game game;
     public static boolean boardReRender = true;
     public static boolean backgroundReRender = true;
-
     public static PieceProcessor<Pawn> pawnRenderer;
     public static PieceProcessor<Knight> knightRenderer;
     public static PieceProcessor<King> kingRenderer;
     public static PieceProcessor<Bishop> bishopRenderer;
     public static PieceProcessor<Queen> queenRenderer;
     public static PieceProcessor<Rook> rookRenderer;
+    private final Board board;
+    private final Game game;
 
     public GraphicsProcessor(Board board, Game game) {
         this.board = board;
@@ -73,28 +72,28 @@ public class GraphicsProcessor implements Runnable {
 
         if (Game.currentState == WindowState.Game) {
 
-            if (backgroundReRender) {
-                g.setColor(Color.BLACK);
-                g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
-                backgroundReRender = false;
-                try {
-                    Thread.sleep(2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Thread.yield();
-                renderBoard(g);
+            //if (backgroundReRender) {
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+            backgroundReRender = false;
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            Thread.yield();
+            renderBoard(g);
+            //}
 
-            if (boardReRender) {
-                try {
-                    Thread.sleep(2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Thread.yield();
-                renderBoard(g);
+            //if (boardReRender) {
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            Thread.yield();
+            renderBoard(g);
+            //}
             try {
                 Thread.sleep(2);
             } catch (InterruptedException e) {
@@ -130,12 +129,18 @@ public class GraphicsProcessor implements Runnable {
     }
 
     private void initRenderers(Graphics g, Board board) {
-        pawnRenderer = new PieceProcessor<Pawn>(game, board) {};
-        knightRenderer = new PieceProcessor<Knight>(game, board){};
-        kingRenderer = new PieceProcessor<King>(game, board) {};
-        bishopRenderer = new PieceProcessor<Bishop>(game, board) {};
-        rookRenderer = new PieceProcessor<Rook>(game, board) {};
-        queenRenderer = new PieceProcessor<Queen>(game, board) {};
+        pawnRenderer = new PieceProcessor<Pawn>(game, board) {
+        };
+        knightRenderer = new PieceProcessor<Knight>(game, board) {
+        };
+        kingRenderer = new PieceProcessor<King>(game, board) {
+        };
+        bishopRenderer = new PieceProcessor<Bishop>(game, board) {
+        };
+        rookRenderer = new PieceProcessor<Rook>(game, board) {
+        };
+        queenRenderer = new PieceProcessor<Queen>(game, board) {
+        };
         Thread thread = new Thread(pawnRenderer);
         Thread thread2 = new Thread(knightRenderer);
         Thread thread3 = new Thread(kingRenderer);
@@ -209,14 +214,14 @@ abstract class PieceProcessor<E> implements Runnable {
         }
     }
 
-    public Class<?> getGenericClass(){
-        Class<?> result =null;
+    public Class<?> getGenericClass() {
+        Class<?> result = null;
         Type type = this.getClass().getGenericSuperclass();
 
-        if(type instanceof ParameterizedType){
-            ParameterizedType pt =(ParameterizedType) type;
+        if (type instanceof ParameterizedType) {
+            ParameterizedType pt = (ParameterizedType) type;
             Type[] fieldArgTypes = pt.getActualTypeArguments();
-            result =(Class<?>) fieldArgTypes[0];
+            result = (Class<?>) fieldArgTypes[0];
         }
         return result;
     }

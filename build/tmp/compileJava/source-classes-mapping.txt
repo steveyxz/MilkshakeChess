@@ -1,10 +1,10 @@
-com/milkshakeChess/enums/id/SideID.java
- com.milkshakeChess.enums.id.SideID
+com/milkshakeChess/enums/gameChoice/WindowState.java
+ com.milkshakeChess.enums.gameChoice.WindowState
 com/milkshakeChess/settings/GameChoiceStorage.java
  com.milkshakeChess.settings.GameChoiceStorage
  com.milkshakeChess.settings.GameChoiceStorage$1
-com/milkshakeChess/models/screenObjects/StartScreenObject.java
- com.milkshakeChess.models.screenObjects.StartScreenObject
+com/milkshakeChess/inputs/KeyInput.java
+ com.milkshakeChess.inputs.KeyInput
 com/milkshakeChess/enums/gameChoice/Style.java
  com.milkshakeChess.enums.gameChoice.Style
 com/milkshakeChess/interfaces/GlobalValues.java
@@ -15,30 +15,30 @@ com/milkshakeChess/models/screenObjects/ScreenObject.java
  com.milkshakeChess.models.screenObjects.ScreenObject
 com/milkshakeChess/models/interfaces/IHasClickSpots.java
  com.milkshakeChess.models.interfaces.IHasClickSpots
-com/milkshakeChess/models/ObjectContainer.java
- com.milkshakeChess.models.ObjectContainer
-com/milkshakeChess/enums/id/PieceID.java
- com.milkshakeChess.enums.id.PieceID
-com/milkshakeChess/interfaces/Constants.java
- com.milkshakeChess.interfaces.Constants
-com/milkshakeChess/enums/gameChoice/WindowState.java
- com.milkshakeChess.enums.gameChoice.WindowState
-com/milkshakeChess/enums/gameChoice/Difficulty.java
- com.milkshakeChess.enums.gameChoice.Difficulty
-com/milkshakeChess/inputs/KeyInput.java
- com.milkshakeChess.inputs.KeyInput
-com/milkshakeChess/FontManager.java
- com.milkshakeChess.FontManager
-com/milkshakeChess/models/screenObjects/CheckmateScreenObject.java
- com.milkshakeChess.models.screenObjects.CheckmateScreenObject
-com/milkshakeChess/models/screenObjects/MainOverlayObject.java
- com.milkshakeChess.models.screenObjects.MainOverlayObject
-com/milkshakeChess/models/interfaces/IObjectContainer.java
- com.milkshakeChess.models.interfaces.IObjectContainer
 com/milkshakeChess/objects/startScreen/Button.java
  com.milkshakeChess.objects.startScreen.Button
+com/milkshakeChess/enums/id/PieceID.java
+ com.milkshakeChess.enums.id.PieceID
+com/milkshakeChess/models/ObjectContainer.java
+ com.milkshakeChess.models.ObjectContainer
+com/milkshakeChess/models/screenObjects/StartScreenObject.java
+ com.milkshakeChess.models.screenObjects.StartScreenObject
+com/milkshakeChess/models/screenObjects/CheckmateScreenObject.java
+ com.milkshakeChess.models.screenObjects.CheckmateScreenObject
 com/milkshakeChess/objects/startScreen/FakePawn.java
  com.milkshakeChess.objects.startScreen.FakePawn
+com/milkshakeChess/FontManager.java
+ com.milkshakeChess.FontManager
+com/milkshakeChess/models/screenObjects/MainOverlayObject.java
+ com.milkshakeChess.models.screenObjects.MainOverlayObject
+com/milkshakeChess/enums/id/SideID.java
+ com.milkshakeChess.enums.id.SideID
+com/milkshakeChess/models/interfaces/IObjectContainer.java
+ com.milkshakeChess.models.interfaces.IObjectContainer
+com/milkshakeChess/interfaces/Constants.java
+ com.milkshakeChess.interfaces.Constants
+com/milkshakeChess/enums/gameChoice/Difficulty.java
+ com.milkshakeChess.enums.gameChoice.Difficulty
 com/milkshakeChess/enums/gameChoice/GameType.java
  com.milkshakeChess.enums.gameChoice.GameType
 com/milkshakeChess/processors/MoveProcessor.java

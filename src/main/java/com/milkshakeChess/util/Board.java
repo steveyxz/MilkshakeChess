@@ -3,7 +3,6 @@ package com.milkshakeChess.util;
 import com.milkshakeChess.enums.gameChoice.GameType;
 import com.milkshakeChess.enums.id.PieceID;
 import com.milkshakeChess.enums.id.SideID;
-import com.milkshakeChess.inputs.BoardMouseInput;
 import com.milkshakeChess.models.Piece;
 import com.milkshakeChess.pieces.*;
 import com.milkshakeChess.settings.GameChoiceStorage;
@@ -281,6 +280,9 @@ public class Board {
      * @return The XY on the window.
      */
     public int[] convertIndexToWindowXY(int index) {
+        if (GameChoiceStorage.gameType == GameType.PlayerBlack) {
+            index = Piece.convIndexToOpposite(index);
+        }
         int[] xy = Move.convIndexToXY(index);
         return new int[]{startX + xy[0] * squareWidth, startY + xy[1] * squareWidth};
     }
