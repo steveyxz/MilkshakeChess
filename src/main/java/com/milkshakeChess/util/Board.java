@@ -66,46 +66,23 @@ public class Board {
         int squareAt = 0;
         for (char c : FEN.toCharArray()) {
 
-            if (GameChoiceStorage.gameType == GameType.PlayerWhite || GameChoiceStorage.gameType == GameType.PlayerBoth) {
-                switch (c) {
-                    case 'b' -> board.add(new Bishop(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Bishop, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'q' -> board.add(new Queen(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Queen, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'k' -> board.add(new King(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.King, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'p' -> board.add(new Pawn(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Pawn, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'r' -> board.add(new Rook(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Rook, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'n' -> board.add(new Knight(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Knight, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'B' -> board.add(new Bishop(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Bishop, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'Q' -> board.add(new Queen(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Queen, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'K' -> board.add(new King(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.King, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'P' -> board.add(new Pawn(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Pawn, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'R' -> board.add(new Rook(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Rook, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'N' -> board.add(new Knight(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Knight, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
-                        for (int i = 0; i < Integer.parseInt(String.valueOf(c)); i++) {
-                            board.add(new Empty(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Empty, SideID.Empty, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                            squareAt++;
-                        }
-                    }
-                }
-            } else if (GameChoiceStorage.gameType == GameType.PlayerBlack) {
-                switch (c) {
-                    case 'b' -> board.add(new Bishop(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Bishop, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'q' -> board.add(new Queen(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Queen, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'k' -> board.add(new King(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.King, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'p' -> board.add(new Pawn(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Pawn, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'r' -> board.add(new Rook(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Rook, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'n' -> board.add(new Knight(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Knight, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'B' -> board.add(new Bishop(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Bishop, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'Q' -> board.add(new Queen(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Queen, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'K' -> board.add(new King(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.King, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'P' -> board.add(new Pawn(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Pawn, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'R' -> board.add(new Rook(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Rook, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case 'N' -> board.add(new Knight(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Knight, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                    case '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
-                        for (int i = 0; i < Integer.parseInt(String.valueOf(c)); i++) {
-                            board.add(new Empty(convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[0], convertIndexToWindowXY(Piece.convIndexToOpposite(squareAt))[1], squareWidth - 5, squareWidth - 5, this, PieceID.Empty, SideID.Empty, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
-                            squareAt++;
-                        }
+            switch (c) {
+                case 'b' -> board.add(new Bishop(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Bishop, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'q' -> board.add(new Queen(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Queen, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'k' -> board.add(new King(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.King, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'p' -> board.add(new Pawn(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Pawn, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'r' -> board.add(new Rook(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Rook, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'n' -> board.add(new Knight(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Knight, SideID.Black, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'B' -> board.add(new Bishop(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Bishop, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'Q' -> board.add(new Queen(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Queen, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'K' -> board.add(new King(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.King, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'P' -> board.add(new Pawn(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Pawn, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'R' -> board.add(new Rook(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Rook, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case 'N' -> board.add(new Knight(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Knight, SideID.White, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                case '1', '2', '3', '4', '5', '6', '7', '8', '9' -> {
+                    for (int i = 0; i < Integer.parseInt(String.valueOf(c)); i++) {
+                        board.add(new Empty(convertIndexToWindowXY(squareAt)[0], convertIndexToWindowXY(squareAt)[1], squareWidth - 5, squareWidth - 5, this, PieceID.Empty, SideID.Empty, Move.convIndexToXY(squareAt)[0], Move.convIndexToXY(squareAt)[1]));
+                        squareAt++;
                     }
                 }
             }
@@ -148,6 +125,10 @@ public class Board {
     }
 
     /**
+     *
+     * THIS METHOD DOES NOT MAKE THE ACTUAL MOVE.
+     * THAT IS TO BE DONE AFTER CALLING THIS METHOD TO DETERMINE A LEGAL MOVE.
+     *
      * @param move  The move that is to be made.
      * @param force For when checking if a move is legal, you can force the move
      *              (meaning it won't check for legality for a second time causing
@@ -158,6 +139,7 @@ public class Board {
     public int move(Move move, boolean force) {
         boolean isEnPassant = true;
         if (getSquare(move.endIndex) == null) {
+            System.out.println("Invalid index");
             return 1;
         }
         if (getSquare(move.startIndex) == null) {
@@ -166,20 +148,26 @@ public class Board {
         Piece endSquarePiece = getSquare(move.endIndex);
         Piece startSquarePiece = getSquare(move.startIndex);
         if (startSquarePiece.getSideID() == endSquarePiece.getSideID()) {
+            System.out.println("Same side?");
             return 1;
         }
         ArrayList<ArrayList<Integer>> allValidMovesForPiece = getAllValidMovesForPiece(startSquarePiece);
-        if (startSquarePiece instanceof Pawn) {
+        if (startSquarePiece.getPieceID() == PieceID.Pawn) {
+            System.out.println(allValidMovesForPiece);
+            System.out.println(move.endIndex);
             if (!allValidMovesForPiece.get(0).contains(move.endIndex) && !allValidMovesForPiece.get(1).contains(move.endIndex) && !allValidMovesForPiece.get(2).contains(move.endIndex)) {
+                System.out.println("Pawn cannot move there");
                 return 1;
             }
         } else {
             if (!allValidMovesForPiece.get(0).contains(move.endIndex) && !allValidMovesForPiece.get(1).contains(move.endIndex)) {
+                System.out.println("Piece cannot move there");
                 return 1;
             }
         }
         if (!force) {
             if (!Move.isMoveLegal()) {
+                System.out.println("Move illegal");
                 return 1;
             }
         }
@@ -205,6 +193,7 @@ public class Board {
             case Pawn -> {
                 int indexToAdd;
                 if (piece.getSideID() == SideID.Black) {
+                    System.out.println("black piece");
                     //Movement
                     int indexOnBoard = piece.getBoardIndex();
                     indexToAdd = indexOnBoard + 8;
@@ -250,6 +239,52 @@ public class Board {
                             possibleEnPassantMoves.add(indexOnBoard + 7);
                         }
                     }
+                } else if (piece.getSideID() == SideID.White) {
+                    //Movement
+                    int indexOnBoard = piece.getBoardIndex();
+                    indexToAdd = indexOnBoard - 8;
+                    if (isSquareEmpty(indexToAdd)) {
+                        if (indexOnBoard > 7) {
+                            possibleMoves.add(indexToAdd);
+                        }
+                        indexToAdd = indexOnBoard - 16;
+                        if (indexOnBoard > 15) {
+                            if (((Pawn) piece).isOnFirstMove) {
+                                if (isSquareEmpty(indexToAdd)) {
+                                    possibleMoves.add(indexToAdd);
+                                }
+                            }
+                        }
+                    }
+                    //Captures
+                    indexToAdd = indexOnBoard - 9;
+                    if (indexOnBoard < 9 && indexOnBoard % 8 != 0) {
+                        if (isSquareEmpty(indexToAdd, SideID.White)) {
+                            possibleCaptures.add(indexToAdd);
+                        }
+                    }
+                    indexToAdd = indexOnBoard - 7;
+                    if (indexOnBoard > 7 && indexOnBoard % 8 != 7) {
+                        if (isSquareEmpty(indexToAdd, SideID.White)) {
+                            possibleCaptures.add(indexToAdd);
+                        }
+                    }
+
+                    //EnPassant
+                    indexToAdd = indexOnBoard + 1;
+                    if (getSquare(indexToAdd).getPieceID() == PieceID.Pawn && getSquare(indexToAdd).getSideID() == SideID.Black) {
+                        if (((Pawn) getSquare(indexToAdd)).isOnFirstMove) {
+                            possibleEnPassantCaptures.add(indexOnBoard);
+                            possibleEnPassantMoves.add(indexOnBoard - 7);
+                        }
+                    }
+                    indexToAdd = indexOnBoard - 1;
+                    if (getSquare(indexToAdd).getPieceID() == PieceID.Pawn && getSquare(indexToAdd).getSideID() == SideID.Black) {
+                        if (((Pawn) getSquare(indexToAdd)).isOnFirstMove) {
+                            possibleEnPassantCaptures.add(indexOnBoard);
+                            possibleEnPassantMoves.add(indexOnBoard - 9);
+                        }
+                    }
                 }
             }
         }
@@ -269,7 +304,7 @@ public class Board {
     }
 
     public boolean isSquareEmpty(int index, SideID ofSide) {
-        return !(getSquare(index) instanceof Empty) && getSquare(index).getSideID() == ofSide;
+        return !(getSquare(index) instanceof Empty) && !(getSquare(index).getSideID() == ofSide);
     }
 
     /**

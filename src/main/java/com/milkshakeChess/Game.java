@@ -103,7 +103,6 @@ public class Game extends Canvas implements Runnable {
                 System.out.println("Invalid path: " + path);
                 return null;
             }
-            System.out.println(Game.class.getResource(path).toString());
             byte[] imageSrc = Game.class.getResourceAsStream(path).readAllBytes();
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageSrc);
             BufferedImage IMG = ImageIO.read(byteArrayInputStream);
